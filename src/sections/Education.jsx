@@ -5,14 +5,14 @@ import { portfolioData } from '../data/portfolio';
 
 export default function Education() {
   return (
-    <section id="education" className="py-24 px-6 relative z-10 min-h-screen">
+    <section id="education" className="py-16 sm:py-24 px-4 sm:px-6 relative z-10 min-h-screen">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-24"
+          className="text-center mb-14 sm:mb-24"
         >
           <h2 className="text-3xl md:text-5xl font-bold mb-6">Education & Research</h2>
         </motion.div>
@@ -80,7 +80,7 @@ export default function Education() {
                transition={{ duration: 0.6 }}
                className="w-full pl-12 md:pl-0 flex justify-center"
              >
-               <div className="glass p-8 md:p-10 hover:-translate-y-1 transition-transform duration-300 relative group max-w-3xl w-full border border-white/5 hover:border-[#0D9488]/30">
+               <div className="glass p-6 sm:p-8 md:p-10 hover:-translate-y-1 transition-transform duration-300 relative group max-w-3xl w-full border border-white/5 hover:border-[#0D9488]/30">
                  {/* Teal Glow */}
                  <div className="absolute inset-0 bg-gradient-to-br from-[#0D9488]/0 to-[#0D9488]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                  

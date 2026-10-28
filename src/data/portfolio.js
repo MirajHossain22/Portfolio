@@ -1,4 +1,9 @@
 import mirajPhoto from '../assets/miraj.jpg.jpeg';
+import agribotImage from '../assets/agribot.jpg';
+import ecoriseImage from '../assets/ecorise.png';
+import fcommerceImage from '../assets/fcommerce.jpg';
+import pharmacyImage from '../assets/pharmacy.jpg.jpg';
+import tomatoMaturityImage from '../assets/tomato-maturity.jpg';
 
 export const portfolioData = {
   hero: {
@@ -52,11 +57,11 @@ export const portfolioData = {
     phone: "+880 1813-609364",
     address: "Gazipur, Dhaka 1230, Bangladesh",
     socials: {
-      github: "https://github.com/MIRAJHOSSAIN-afk",
+      github: "https://github.com/MirajHossain22",
       linkedin: "https://www.linkedin.com/in/miraj-hossain-075590257"
     },
     socialNetworks: [
-      { name: 'GitHub', url: 'https://github.com/MIRAJHOSSAIN-afk', icon: 'github' },
+      { name: 'GitHub', url: 'https://github.com/MirajHossain22', icon: 'github' },
       { name: 'LinkedIn', url: 'https://www.linkedin.com/in/miraj-hossain-075590257', icon: 'linkedin' },
       { name: 'Facebook', url: 'https://www.facebook.com/share/1DojQrFgY9/', icon: 'facebook' },
       { name: 'Instagram', url: 'https://www.instagram.com/mirajh417?srtk=NDdyNGMyOXl2MXhu', icon: 'instagram' },
@@ -71,6 +76,9 @@ export const portfolioData = {
       title: "EcoRise: Full-Stack Sustainability & Eco-Audit Platform",
       tags: ["React", "PHP", "MySQL", "REST API"],
       description: "Built a full-stack sustainability web app backed by 10+ relational database schemas and dynamic user views. Designed responsive REST API endpoints and state management workflows that reduced client-side payload latency on the reporting dashboard. Integrated React components with PHP server logic across multi-step audit forms, validating input on both client and server. Implemented secure authentication and role-based access control.",
+      image: ecoriseImage,
+      imageAlt: "EcoRise project logo",
+      imageFit: "contain",
       github: "#",
       demo: "#"
     },
@@ -79,8 +87,44 @@ export const portfolioData = {
       title: "AgriBot: Edge AI Crop Disease Diagnostic & Web Advisory System",
       tags: ["Python", "OpenCV", "MobileNetV3", "Raspberry Pi"],
       description: "Deployed MobileNetV3 on a Raspberry Pi for low-latency classification of 38 crop condition classes. Built an OpenCV pipeline that filtered redundant and motion-blurred frames, cutting redundant downstream computation by over 50%. Added automated leaf ROI extraction and white-background normalization to reduce field-background domain shift before classification. Integrated a web interface with an external AI API (REST) to log edge telemetry and generate structured treatment guidance.",
+      image: agribotImage,
+      imageAlt: "AgriBot autonomous crop diagnostic robot",
+      imagePosition: "center",
       github: "#",
       demo: "#"
+    },
+    {
+      id: 3,
+      title: "Custom CNN for Tomato Maturity Classification",
+      tags: ["Python", "PyTorch", "NumPy", "scikit-learn", "Deep Learning"],
+      description: "Built a custom CNN from scratch in PyTorch to classify tomatoes into four maturity classes: Mature, Immature, Fresh, and Rotten. Prepared a 2,000-image dataset with preprocessing and augmentation, compared variants with Batch Normalization and Dropout, and evaluated them using accuracy, precision, recall, F1-score, confusion matrices, and training-validation curves.",
+      image: tomatoMaturityImage,
+      imageAlt: "Custom CNN tomato maturity classification overview",
+      imagePosition: "center",
+      github: null,
+      demo: null
+    },
+    {
+      id: 4,
+      title: "Pharmacy Expiry Shelf Check",
+      tags: ["React", "Next.js", "JavaScript", "Tailwind CSS", "Vercel"],
+      description: "Built a responsive React and Next.js SPA that flags near-expiry pharmacy stock within the 60-day distributor return window. It calculates dynamic date tiers and real-time Value at Risk in BDT client-side, with instant KPI updates and item archiving after return confirmation—without page reloads.",
+      image: pharmacyImage,
+      imageAlt: "Pharmacy Expiry Shelf Check dashboard",
+      imagePosition: "center",
+      github: null,
+      demo: "https://lsh26-t001-p02.vercel.app/"
+    },
+    {
+      id: 5,
+      title: "F-Commerce Order Extractor",
+      tags: ["Python", "FastAPI", "Gemini API", "SQLite", "Docker", "GitHub Actions"],
+      description: "AI order extractor for Bangladeshi F-commerce: Bangla, Banglish, or English chat in; validated orders, checkout, tracking, and inventory out. Built with FastAPI, Gemini, and SQLite, with Bangla digit conversion, strict Bangladeshi phone validation, tokenized links, atomic inventory updates, 241 offline tests, CI, and evaluation against a regex baseline.",
+      image: fcommerceImage,
+      imageAlt: "F-Commerce Order Extractor seller dashboard",
+      imagePosition: "top",
+      github: null,
+      demo: null
     }
   ],
   education: [
@@ -89,7 +133,7 @@ export const portfolioData = {
       degree: "BSc in Computer Science & Engineering",
       institution: "American International University-Bangladesh",
       period: "2022 – 2026",
-      details: "CGPA 3.31. Major: Information Systems & Artificial Intelligence. Coursework: Data Structures and Algorithms, Database Management Systems, Web Technologies, Artificial Intelligence."
+      details: "Major: Information Systems & Artificial Intelligence. Coursework: Data Structures and Algorithms, Database Management Systems, Web Technologies, Artificial Intelligence."
     },
     {
       id: 2,

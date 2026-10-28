@@ -22,7 +22,7 @@ function App() {
       <Antigravity />
       <Navbar />
       
-      <main className="relative w-full flex flex-col pt-32">
+      <main className="relative w-full flex flex-col pt-20 sm:pt-24">
         <Hero />
         <About />
         <Skills />

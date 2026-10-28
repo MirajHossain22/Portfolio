@@ -92,7 +92,7 @@ export default function PortraitCard() {
       <motion.div 
         animate={{ y: shouldReduceMotion ? 0 : [0, -8, 0] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -top-4 -right-6 z-20"
+        className="absolute -top-4 right-0 sm:-right-6 z-20"
       >
         <div className="glass px-3 py-1.5 rounded-full flex items-center gap-2 border border-white/10 shadow-lg backdrop-blur-md">
           <div className={`w-2 h-2 rounded-full bg-emerald-400 ${shouldReduceMotion ? '' : 'animate-pulse'}`} />
@@ -103,7 +103,7 @@ export default function PortraitCard() {
       <motion.div 
         animate={{ y: shouldReduceMotion ? 0 : [0, 8, 0] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute -bottom-4 -left-6 z-20"
+        className="absolute -bottom-4 left-0 sm:-left-6 z-20"
       >
         <div className="glass px-3 py-1.5 rounded-full border border-white/10 shadow-lg backdrop-blur-md">
           <span className="label-mono text-[10px] text-gray-200 m-0 leading-none">{portfolioData.hero.portrait.chip2}</span>

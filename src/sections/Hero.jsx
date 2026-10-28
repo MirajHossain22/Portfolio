@@ -56,9 +56,9 @@ export default function Hero() {
   const uniqueTechStack = [...new Set(techStack)];
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col justify-center items-center pt-24 pb-24 overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex flex-col justify-center items-center pt-16 sm:pt-24 pb-24 overflow-hidden">
 
-      <div className="flex-1 flex flex-col justify-center items-center w-full px-6 max-w-7xl mx-auto z-10 mt-8">
+      <div className="flex-1 flex flex-col justify-center items-center w-full px-4 sm:px-6 max-w-7xl mx-auto z-10 mt-6 sm:mt-8">
 
         {/* 2-Column Grid */}
         <div className="w-full flex flex-col-reverse lg:grid lg:grid-cols-12 gap-12 lg:gap-8 items-center justify-between">
@@ -68,7 +68,7 @@ export default function Hero() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="w-full lg:col-span-7 xl:col-span-7 glass p-8 md:p-12 text-center relative shadow-2xl rounded-3xl flex flex-col items-center justify-center"
+            className="w-full lg:col-span-7 xl:col-span-7 glass p-5 sm:p-8 md:p-12 text-center relative shadow-2xl rounded-3xl flex flex-col items-center justify-center"
           >
             {/* Eyebrow */}
             <motion.div variants={itemVariants} className="mb-6">

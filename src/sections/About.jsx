@@ -19,7 +19,7 @@ export default function About() {
 
   const smallTiles = [
     { icon: MapPin, label: "Location", value: "Gazipur, Dhaka", color: "text-red-400" },
-    { icon: GraduationCap, label: "Education", value: "CGPA 3.31", color: "text-violet-400" },
+    { icon: GraduationCap, label: "Education", value: "BSc in CSE", color: "text-violet-400" },
     { icon: Briefcase, label: "Status", value: "Open to Software Engineer Intern roles", color: "text-teal-400" },
     { icon: Code2, label: "Core Stack", value: "React, PHP, Python", color: "text-blue-400" },
     { icon: BookOpen, label: "Publication", value: "1 peer-reviewed paper", color: "text-[#FF9FFC]" },
@@ -27,7 +27,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-24 px-6 relative z-10 min-h-screen flex items-center justify-center">
+    <section id="about" className="py-16 sm:py-24 px-4 sm:px-6 relative z-10 min-h-screen flex items-center justify-center">
       <div className="max-w-6xl mx-auto w-full">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -49,7 +49,7 @@ export default function About() {
           {/* Large Bio Tile */}
           <motion.div 
             variants={itemVariants}
-            className="glass p-8 md:p-10 flex flex-col justify-between md:col-span-2 group hover:-translate-y-1 hover:border-white/20 transition-all duration-300 relative overflow-hidden"
+            className="glass p-6 sm:p-8 md:p-10 flex flex-col justify-between md:col-span-2 group hover:-translate-y-1 hover:border-white/20 transition-all duration-300 relative overflow-hidden"
           >
             {/* Soft decorative glow behind text */}
             <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-violet-500/10 rounded-full blur-3xl pointer-events-none"></div>

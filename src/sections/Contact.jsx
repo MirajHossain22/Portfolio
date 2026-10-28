@@ -38,7 +38,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 px-6 relative z-10 min-h-screen flex items-center justify-center">
+    <section id="contact" className="py-16 sm:py-24 px-4 sm:px-6 relative z-10 min-h-screen flex items-center justify-center">
       <motion.div 
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -46,7 +46,7 @@ export default function Contact() {
         transition={{ duration: 0.8 }}
         className="w-full max-w-5xl"
       >
-        <div className="glass p-8 md:p-12 border border-white/5 hover:border-white/10 transition-colors shadow-2xl relative overflow-hidden">
+        <div className="glass p-5 sm:p-8 md:p-12 border border-white/5 hover:border-white/10 transition-colors shadow-2xl relative overflow-hidden">
           {/* Ambient Glow */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#7C3AED]/10 rounded-full blur-[100px] pointer-events-none"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#2563EB]/10 rounded-full blur-[100px] pointer-events-none"></div>
@@ -55,7 +55,7 @@ export default function Contact() {
             
             {/* Left Side: Info */}
             <div className="flex flex-col justify-center">
-              <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-6">
                 Let's build <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7C3AED] to-[#FF9FFC]">something.</span>
               </h2>
               <p className="text-gray-400 text-lg md:text-xl leading-relaxed mb-10 font-light">
@@ -67,18 +67,18 @@ export default function Contact() {
                 {/* Email Copy Button */}
                 <button 
                   onClick={handleCopyEmail}
-                  className="flex items-center justify-between p-4 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 rounded-xl transition-all group w-full max-w-md"
+                  className="flex items-center justify-between gap-3 p-3 sm:p-4 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 rounded-xl transition-all group w-full max-w-md min-w-0"
                 >
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3 sm:gap-4 min-w-0">
                     <div className="w-10 h-10 rounded-full bg-[#7C3AED]/20 flex items-center justify-center group-hover:scale-110 transition-transform">
                       <Mail className="w-5 h-5 text-[#FF9FFC]" />
                     </div>
-                    <div className="text-left">
+                    <div className="text-left min-w-0">
                       <p className="text-sm text-gray-500">Email me at</p>
-                      <p className="text-gray-200 font-medium tracking-wide">{portfolioData.contact.email}</p>
+                      <p className="text-gray-200 font-medium tracking-wide break-all">{portfolioData.contact.email}</p>
                     </div>
                   </div>
-                  <div className="relative w-5 h-5">
+                  <div className="relative w-5 h-5 shrink-0">
                     <AnimatePresence mode="wait">
                       {copied ? (
                         <motion.div key="check" initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }} className="absolute inset-0">

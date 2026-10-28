@@ -64,7 +64,7 @@ export default function Navbar() {
           style={{ scaleX }}
         />
         
-        <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex justify-between items-center relative z-10">
           <a 
             href="#hero" 
             onClick={(e) => handleLinkClick(e, '#hero')}
@@ -135,7 +135,7 @@ export default function Navbar() {
                 visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
                 hidden: { transition: { staggerChildren: 0.05, staggerDirection: -1 } }
               }}
-              className="flex flex-col items-center gap-8"
+              className="flex flex-col items-center gap-5 sm:gap-8 max-h-[calc(100dvh-5rem)] overflow-y-auto py-6"
             >
               {navLinks.map((link) => {
                 const isActive = activeSection === link.href.substring(1);
@@ -148,7 +148,7 @@ export default function Navbar() {
                     }}
                     href={link.href}
                     onClick={(e) => handleLinkClick(e, link.href)}
-                    className={`text-4xl font-bold tracking-tight transition-colors ${
+                    className={`text-2xl sm:text-4xl font-bold tracking-tight transition-colors ${
                       isActive ? 'text-white drop-shadow-[0_0_12px_rgba(124,58,237,0.8)]' : 'text-gray-400 hover:text-white'
                     }`}
                   >
@@ -164,7 +164,7 @@ export default function Navbar() {
                 href={portfolioData.about.resumeLink}
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="btn-primary mt-4 text-lg px-8 py-4"
+                className="btn-primary mt-2 sm:mt-4 text-base sm:text-lg px-7 sm:px-8 py-3 sm:py-4"
               >
                 Download Resume
               </motion.a>
