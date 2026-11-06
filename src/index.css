@@ -120,68 +120,132 @@
 }
 
 /* Project-section polish: original CSS-only checkbox treatment inspired by Uiverse checkbox patterns. */
-#projects .glass.group {
+#projects .pf-card {
   --pf-accent: #7C3AED;
   --pf-card-bg: #0A0A0F;
   position: relative;
-  overflow: hidden;
-  transition: transform 500ms ease-in-out, border-radius 500ms ease-in-out, box-shadow 300ms ease;
+  min-width: 0;
 }
 
-#projects .glass.group > :not(.absolute) {
+#projects .pf-card > :not(.absolute) {
   position: relative;
   z-index: 1;
 }
 
-/* Hover effect adapted from Uiverse.io by Smit-Prajapati - https://uiverse.io/Smit-Prajapati */
-#projects .glass.group::before {
-  content: '';
+#projects .pf-featured-stack {
+  display: flex;
+  gap: 0.75rem;
+  height: 520px;
+  margin-bottom: 2rem;
+}
+
+#projects .pf-featured-card {
+  flex: 1 1 0;
+  min-width: 0;
+  transition: flex 600ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 400ms ease, transform 400ms ease;
+}
+
+#projects .pf-featured-card:hover,
+#projects .pf-featured-card:focus-within {
+  flex: 4 1 0;
+  z-index: 2;
+  box-shadow: 0 20px 50px -10px rgba(124, 58, 237, 0.5);
+}
+
+#projects .pf-featured-card > .w-full {
   position: absolute;
   inset: 0;
-  border: 2px solid var(--pf-accent);
-  opacity: 0;
-  transform: rotate(10deg);
-  transition: all 500ms ease-in-out;
-  pointer-events: none;
-  z-index: 0;
+  width: 100%;
+  height: 100%;
+  border-bottom: 0;
 }
 
-#projects .glass.group::after {
-  content: 'View project';
+#projects .pf-featured-card > .p-5 {
   position: absolute;
-  left: 50%;
-  bottom: 6px;
-  transform: translateX(-50%);
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 7px;
-  padding: 0 5px 0 8px;
-  color: var(--pf-accent);
-  background: var(--pf-card-bg);
-  opacity: 0;
-  transition: all 500ms ease-in-out;
-  pointer-events: none;
-  z-index: 2;
+  inset: auto 0 0;
+  max-height: 9rem;
+  overflow: hidden;
+  padding-top: 4rem;
+  background: linear-gradient(transparent, rgba(10, 10, 15, 0.96) 35%);
+  transition: max-height 500ms ease, background 500ms ease;
 }
 
-@media (hover: hover) {
-  #projects .glass.group:hover,
-  #projects .glass.group:focus-within {
-    border-radius: 0;
-    transform: scale(1.03) !important;
+#projects .pf-featured-card > .p-5 > :not(h3) {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 500ms ease, opacity 400ms ease;
+}
+
+#projects .pf-featured-card:hover > .p-5,
+#projects .pf-featured-card:focus-within > .p-5 {
+  max-height: 100%;
+  background: linear-gradient(transparent, rgba(10, 10, 15, 0.98) 14%);
+}
+
+#projects .pf-featured-card:hover > .p-5 > :not(h3),
+#projects .pf-featured-card:focus-within > .p-5 > :not(h3) {
+  max-height: 24rem;
+  opacity: 1;
+}
+
+#projects .pf-grid {
+  transition: gap 400ms ease;
+}
+
+#projects .pf-grid-card {
+  transition: transform 400ms ease, opacity 400ms ease, filter 400ms ease, box-shadow 400ms ease;
+}
+
+@media (hover: hover) and (min-width: 901px) {
+  #projects .pf-grid:has(.pf-grid-card:hover) .pf-grid-card:not(:hover) {
+    transform: scale(0.96);
+    opacity: 0.5;
+    filter: blur(1px);
   }
 
-  #projects .glass.group:hover::before,
-  #projects .glass.group:focus-within::before {
-    inset: 12px;
-    opacity: 1;
-    transform: rotate(0);
+  #projects .pf-grid-card:hover,
+  #projects .pf-grid-card:focus-within {
+    transform: translateY(-8px) scale(1.04);
+    z-index: 2;
+    box-shadow: 0 20px 50px -10px rgba(124, 58, 237, 0.5);
+  }
+}
+
+@media (max-width: 900px), (hover: none) {
+  #projects .pf-featured-stack {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: auto;
   }
 
-  #projects .glass.group:hover::after,
-  #projects .glass.group:focus-within::after {
-    letter-spacing: 3px;
+  #projects .pf-featured-card {
+    min-height: 520px;
+  }
+
+  #projects .pf-featured-card > .w-full,
+  #projects .pf-featured-card > .p-5 {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    max-height: none;
+  }
+
+  #projects .pf-featured-card > .w-full {
+    height: 13rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  #projects .pf-featured-card > .p-5 {
+    padding-top: 1.25rem;
+    background: rgba(10, 10, 15, 0.3);
+  }
+
+  #projects .pf-featured-card > .p-5 > :not(h3) {
+    max-height: none;
     opacity: 1;
+    overflow: visible;
   }
 }
 
@@ -288,9 +352,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #projects .glass.group,
-  #projects .glass.group::before,
-  #projects .glass.group::after {
+  #projects .pf-featured-card,
+  #projects .pf-featured-card > .p-5,
+  #projects .pf-featured-card > .p-5 > :not(h3),
+  #projects .pf-grid-card {
     transition: none;
   }
 

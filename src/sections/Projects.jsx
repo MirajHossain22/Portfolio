@@ -79,17 +79,31 @@ export default function Projects() {
           </div>
         </motion.div>
 
-        <motion.div layout className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project) => (
-              <ProjectCard 
-                key={project.id} 
-                project={project} 
-                onClick={() => setSelectedProject(project)}
-              />
-            ))}
-          </AnimatePresence>
-        </motion.div>
+        <AnimatePresence mode="popLayout">
+          {filteredProjects.some((project) => project.id >= 6) && (
+            <motion.div layout className="pf-featured-stack" aria-label="Featured projects">
+              {filteredProjects.filter((project) => project.id >= 6).map((project) => (
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  onClick={() => setSelectedProject(project)}
+                />
+              ))}
+            </motion.div>
+          )}
+
+          {filteredProjects.some((project) => project.id < 6) && (
+            <motion.div layout className="pf-grid grid grid-cols-1 lg:grid-cols-3 gap-8" aria-label="Additional projects">
+              {filteredProjects.filter((project) => project.id < 6).map((project) => (
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  onClick={() => setSelectedProject(project)}
+                />
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* Modal */}
@@ -181,6 +195,8 @@ export default function Projects() {
 }
 
 function ProjectCard({ project, onClick }) {
+  const isFeatured = project.id >= 6;
+
   return (
     <motion.div
       layout
@@ -189,7 +205,7 @@ function ProjectCard({ project, onClick }) {
       exit={{ opacity: 0, scale: 0.9 }}
       whileHover={{ y: -6 }}
       transition={{ duration: 0.4 }}
-      className="glass group cursor-pointer flex flex-col relative overflow-hidden transition-all duration-300 hover:border-white/30 hover:shadow-[0_0_30px_rgba(124,58,237,0.15)] h-full"
+      className={`pf-card glass group cursor-pointer flex flex-col relative overflow-hidden h-full ${isFeatured ? 'pf-featured-card' : 'pf-grid-card'}`}
       onClick={onClick}
     >
       {/* Thumbnail */}
