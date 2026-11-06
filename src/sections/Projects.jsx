@@ -4,7 +4,7 @@ import { ExternalLink, X, Star } from 'lucide-react';
 import { FiGithub } from 'react-icons/fi';
 import { portfolioData } from '../data/portfolio';
 
-const filters = ['All', 'Web', 'AI/ML', 'IoT'];
+const filters = ['All', 'Web', 'AI/ML'];
 const projectCategoryMap = {
   1: ['Web'], // EcoRise
   2: ['AI/ML', 'IoT'], // AgriBot
@@ -14,15 +14,14 @@ const projectCategoryMap = {
 };
 
 const hasProjectLink = (url) => Boolean(url && url !== '#');
-const projectOrder = [2, 3, 5, 4, 1];
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('All');
   const [selectedProject, setSelectedProject] = useState(null);
 
   const filteredProjects = [...portfolioData.projects]
-    .sort((a, b) => projectOrder.indexOf(a.id) - projectOrder.indexOf(b.id))
     .filter(project => {
+      if (project.id > 3) return false;
       if (activeFilter === 'All') return true;
       return projectCategoryMap[project.id]?.includes(activeFilter);
     });
@@ -109,6 +108,7 @@ export default function Projects() {
             >
               <button 
                 onClick={() => setSelectedProject(null)}
+                aria-label="Close project details"
                 className="absolute top-4 right-4 p-2 bg-[#0A0A0F]/50 backdrop-blur-md rounded-full border border-white/10 hover:bg-white/20 transition-colors z-20"
               >
                 <X className="w-5 h-5 text-white" />
@@ -135,7 +135,7 @@ export default function Projects() {
                 
                 <div className="flex flex-wrap gap-2 mb-8">
                   {selectedProject.tags.map((tag, i) => (
-                    <span key={i} className="label-mono px-3 py-1.5 bg-white/5 border border-white/10 rounded-md text-gray-300">
+                    <span key={i} className="pf-stack-chip label-mono px-3 py-1.5 bg-white/5 border border-white/10 rounded-md text-gray-300">
                       {tag}
                     </span>
                   ))}
@@ -144,17 +144,21 @@ export default function Projects() {
                 <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-7 sm:mb-10 font-light">
                   {selectedProject.description}
                 </p>
+
+                <ul className="pf-highlights pf-modal-highlights mb-8">
+                  {selectedProject.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+                </ul>
                 
                 {(hasProjectLink(selectedProject.demo) || hasProjectLink(selectedProject.github)) && (
                   <div className="flex flex-wrap gap-4">
                     {hasProjectLink(selectedProject.demo) && (
-                      <a href={selectedProject.demo} target="_blank" rel="noopener noreferrer" className="btn-primary flex items-center gap-2">
+                      <a aria-label={`Open live demo for ${selectedProject.title}`} href={selectedProject.demo} target="_blank" rel="noopener noreferrer" className="btn-primary flex items-center gap-2">
                         <ExternalLink className="w-5 h-5" />
                         Live Demo
                       </a>
                     )}
                     {hasProjectLink(selectedProject.github) && (
-                      <a href={selectedProject.github} target="_blank" rel="noopener noreferrer" className="btn-ghost flex items-center gap-2">
+                      <a aria-label={`Open GitHub repository for ${selectedProject.title}`} href={selectedProject.github} target="_blank" rel="noopener noreferrer" className="btn-ghost flex items-center gap-2">
                         <FiGithub className="w-5 h-5" />
                         GitHub Source
                       </a>
@@ -226,10 +230,21 @@ function ProjectCard({ project, onClick }) {
         {/* Tech Chips */}
         <div className="flex flex-wrap gap-2 mb-8 mt-auto">
           {project.tags.map((tag, i) => (
-            <span key={i} className="label-mono px-2 py-1 bg-white/5 border border-white/5 rounded text-gray-400">
+            <span key={i} className="pf-stack-chip label-mono px-2 py-1 bg-white/5 border border-white/5 rounded text-gray-400">
               {tag}
             </span>
           ))}
+        </div>
+
+        <div className="pf-highlight-toggle">
+          <input id={`pf-highlights-${project.id}`} type="checkbox" className="pf-highlight-checkbox" />
+          <label htmlFor={`pf-highlights-${project.id}`} onClick={(e) => e.stopPropagation()}>
+            <span className="pf-checkbox-mark" aria-hidden="true" />
+            <span>Show highlights</span>
+          </label>
+          <ul className="pf-highlights">
+            {project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+          </ul>
         </div>
 
         {/* Action Buttons */}
@@ -240,6 +255,7 @@ function ProjectCard({ project, onClick }) {
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={`Open live demo for ${project.title}`}
                 onClick={(e) => e.stopPropagation()}
                 className="btn-primary !py-2 !px-4 !text-sm flex items-center gap-2"
               >
@@ -252,6 +268,7 @@ function ProjectCard({ project, onClick }) {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={`Open GitHub repository for ${project.title}`}
                 onClick={(e) => e.stopPropagation()}
                 className="btn-ghost !py-2 !px-4 !text-sm flex items-center gap-2"
               >

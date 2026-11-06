@@ -119,6 +119,118 @@
   }
 }
 
+/* Project-section polish: original CSS-only checkbox treatment inspired by Uiverse checkbox patterns. */
+.pf-stack-chip {
+  transition: transform 200ms ease, border-color 200ms ease, color 200ms ease, background-color 200ms ease;
+}
+
+.pf-stack-chip:hover {
+  transform: translateY(-2px);
+  border-color: rgba(124, 58, 237, 0.55);
+  color: #ffffff;
+  background-color: rgba(124, 58, 237, 0.12);
+}
+
+.pf-highlight-toggle {
+  margin-bottom: 1.5rem;
+}
+
+.pf-highlight-checkbox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.pf-highlight-toggle label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.75rem 0.35rem 0.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  color: #d1d5db;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 200ms ease, background-color 200ms ease, color 200ms ease;
+}
+
+.pf-highlight-toggle label:hover {
+  border-color: rgba(124, 58, 237, 0.65);
+  background-color: rgba(124, 58, 237, 0.1);
+  color: #ffffff;
+}
+
+.pf-checkbox-mark {
+  display: inline-block;
+  position: relative;
+  width: 1.35rem;
+  height: 1.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0.4rem;
+  background: rgba(255, 255, 255, 0.05);
+  transition: background-color 200ms ease, border-color 200ms ease, transform 200ms ease;
+}
+
+.pf-checkbox-mark::after {
+  content: '';
+  position: absolute;
+  width: 0.35rem;
+  height: 0.7rem;
+  left: 0.45rem;
+  top: 0.2rem;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  opacity: 0;
+  transform: rotate(45deg) scale(0.6);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.pf-highlight-checkbox:checked + label .pf-checkbox-mark {
+  border-color: #7c3aed;
+  background: linear-gradient(135deg, #7c3aed, #2563eb);
+  transform: scale(1.04);
+}
+
+.pf-highlight-checkbox:checked + label .pf-checkbox-mark::after {
+  opacity: 1;
+  transform: rotate(45deg) scale(1);
+}
+
+.pf-highlight-checkbox:focus-visible + label {
+  outline: 2px solid #c4b5fd;
+  outline-offset: 3px;
+}
+
+.pf-highlights {
+  display: none;
+  margin-top: 0.75rem;
+  padding-left: 1.1rem;
+  color: #d1d5db;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.pf-highlight-checkbox:checked ~ .pf-highlights,
+.pf-modal-highlights {
+  display: block;
+}
+
+.pf-highlights li + li {
+  margin-top: 0.45rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-stack-chip,
+  .pf-highlight-toggle label,
+  .pf-checkbox-mark,
+  .pf-checkbox-mark::after {
+    transition: none;
+  }
+}
+
 @layer utilities {
   @keyframes marquee {
     0% { transform: translateX(0); }
