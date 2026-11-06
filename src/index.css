@@ -120,6 +120,71 @@
 }
 
 /* Project-section polish: original CSS-only checkbox treatment inspired by Uiverse checkbox patterns. */
+#projects .glass.group {
+  --pf-accent: #7C3AED;
+  --pf-card-bg: #0A0A0F;
+  position: relative;
+  overflow: hidden;
+  transition: transform 500ms ease-in-out, border-radius 500ms ease-in-out, box-shadow 300ms ease;
+}
+
+#projects .glass.group > :not(.absolute) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hover effect adapted from Uiverse.io by Smit-Prajapati - https://uiverse.io/Smit-Prajapati */
+#projects .glass.group::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--pf-accent);
+  opacity: 0;
+  transform: rotate(10deg);
+  transition: all 500ms ease-in-out;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#projects .glass.group::after {
+  content: 'View project';
+  position: absolute;
+  left: 50%;
+  bottom: 6px;
+  transform: translateX(-50%);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 7px;
+  padding: 0 5px 0 8px;
+  color: var(--pf-accent);
+  background: var(--pf-card-bg);
+  opacity: 0;
+  transition: all 500ms ease-in-out;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@media (hover: hover) {
+  #projects .glass.group:hover,
+  #projects .glass.group:focus-within {
+    border-radius: 0;
+    transform: scale(1.03) !important;
+  }
+
+  #projects .glass.group:hover::before,
+  #projects .glass.group:focus-within::before {
+    inset: 12px;
+    opacity: 1;
+    transform: rotate(0);
+  }
+
+  #projects .glass.group:hover::after,
+  #projects .glass.group:focus-within::after {
+    letter-spacing: 3px;
+    opacity: 1;
+  }
+}
+
 .pf-stack-chip {
   transition: transform 200ms ease, border-color 200ms ease, color 200ms ease, background-color 200ms ease;
 }
@@ -223,6 +288,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  #projects .glass.group,
+  #projects .glass.group::before,
+  #projects .glass.group::after {
+    transition: none;
+  }
+
   .pf-stack-chip,
   .pf-highlight-toggle label,
   .pf-checkbox-mark,
