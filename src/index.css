@@ -123,6 +123,8 @@
 #projects .pf-card {
   --pf-accent: #7C3AED;
   --pf-card-bg: #0A0A0F;
+  --pf-dur: 0.6s;
+  --pf-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
   position: relative;
   min-width: 0;
 }
@@ -137,12 +139,13 @@
   gap: 0.75rem;
   height: 520px;
   margin-bottom: 2rem;
+  container-type: inline-size;
 }
 
 #projects .pf-featured-card {
   flex: 1 1 0;
   min-width: 0;
-  transition: flex 600ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 400ms ease, transform 400ms ease;
+  transition: flex var(--pf-dur) var(--pf-ease), box-shadow 400ms ease, transform 400ms ease;
 }
 
 #projects .pf-featured-card:hover,
@@ -152,7 +155,7 @@
   box-shadow: 0 20px 50px -10px rgba(124, 58, 237, 0.5);
 }
 
-#projects .pf-featured-card > .w-full {
+#projects .pf-featured-card > .pf-media {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -160,31 +163,59 @@
   border-bottom: 0;
 }
 
-#projects .pf-featured-card > .p-5 {
+#projects .pf-featured-card > .pf-media img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 66cqw;
+  height: 100%;
+  object-fit: cover;
+  object-position: left top;
+  transform: scale(1.06);
+  transform-origin: left top;
+  filter: brightness(0.65);
+  transition: transform var(--pf-dur) var(--pf-ease), filter var(--pf-dur) var(--pf-ease);
+}
+
+#projects .pf-featured-card > .pf-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 48%, rgba(10, 10, 15, 0.35));
+  pointer-events: none;
+}
+
+#projects .pf-featured-card:hover > .pf-media img,
+#projects .pf-featured-card:focus-within > .pf-media img {
+  transform: scale(1);
+  filter: brightness(1);
+}
+
+#projects .pf-featured-card > .pf-body {
   position: absolute;
   inset: auto 0 0;
   max-height: 9rem;
   overflow: hidden;
   padding-top: 4rem;
   background: linear-gradient(transparent, rgba(10, 10, 15, 0.96) 35%);
-  transition: max-height 500ms ease, background 500ms ease;
+  transition: max-height var(--pf-dur) var(--pf-ease), background var(--pf-dur) var(--pf-ease);
 }
 
-#projects .pf-featured-card > .p-5 > :not(h3) {
+#projects .pf-featured-card > .pf-body > :not(h3) {
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transition: max-height 500ms ease, opacity 400ms ease;
+  transition: max-height var(--pf-dur) var(--pf-ease), opacity 400ms ease;
 }
 
-#projects .pf-featured-card:hover > .p-5,
-#projects .pf-featured-card:focus-within > .p-5 {
+#projects .pf-featured-card:hover > .pf-body,
+#projects .pf-featured-card:focus-within > .pf-body {
   max-height: 100%;
   background: linear-gradient(transparent, rgba(10, 10, 15, 0.98) 14%);
 }
 
-#projects .pf-featured-card:hover > .p-5 > :not(h3),
-#projects .pf-featured-card:focus-within > .p-5 > :not(h3) {
+#projects .pf-featured-card:hover > .pf-body > :not(h3),
+#projects .pf-featured-card:focus-within > .pf-body > :not(h3) {
   max-height: 24rem;
   opacity: 1;
 }
@@ -195,6 +226,15 @@
 
 #projects .pf-grid-card {
   transition: transform 400ms ease, opacity 400ms ease, filter 400ms ease, box-shadow 400ms ease;
+}
+
+#projects .pf-grid-card .pf-media {
+  position: relative;
+}
+
+#projects .pf-placeholder {
+  background: linear-gradient(135deg, #11111c, #24204a 55%, #0f172a);
+  opacity: 1;
 }
 
 @media (hover: hover) and (min-width: 901px) {
@@ -223,8 +263,8 @@
     min-height: 520px;
   }
 
-  #projects .pf-featured-card > .w-full,
-  #projects .pf-featured-card > .p-5 {
+  #projects .pf-featured-card > .pf-media,
+  #projects .pf-featured-card > .pf-body {
     position: relative;
     inset: auto;
     width: 100%;
@@ -232,17 +272,26 @@
     max-height: none;
   }
 
-  #projects .pf-featured-card > .w-full {
+  #projects .pf-featured-card > .pf-media {
     height: 13rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
 
-  #projects .pf-featured-card > .p-5 {
+  #projects .pf-featured-card > .pf-media img {
+    position: static;
+    width: 100%;
+    height: 100%;
+    object-position: top center;
+    transform: none;
+    filter: none;
+  }
+
+  #projects .pf-featured-card > .pf-body {
     padding-top: 1.25rem;
     background: rgba(10, 10, 15, 0.3);
   }
 
-  #projects .pf-featured-card > .p-5 > :not(h3) {
+  #projects .pf-featured-card > .pf-body > :not(h3) {
     max-height: none;
     opacity: 1;
     overflow: visible;
@@ -353,8 +402,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   #projects .pf-featured-card,
-  #projects .pf-featured-card > .p-5,
-  #projects .pf-featured-card > .p-5 > :not(h3),
+  #projects .pf-featured-card > .pf-media img,
+  #projects .pf-featured-card > .pf-body,
+  #projects .pf-featured-card > .pf-body > :not(h3),
   #projects .pf-grid-card {
     transition: none;
   }

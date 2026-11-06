@@ -137,6 +137,7 @@ export default function Projects() {
                    <img
                      src={selectedProject.image}
                      alt={selectedProject.imageAlt || selectedProject.title}
+                     loading="lazy"
                      className={`absolute inset-0 h-full w-full ${selectedProject.imageFit === 'contain' ? 'object-contain bg-[#ededed]' : 'object-cover'}`}
                      style={{ objectPosition: selectedProject.imagePosition || 'center' }}
                    />
@@ -209,17 +210,17 @@ function ProjectCard({ project, onClick }) {
       onClick={onClick}
     >
       {/* Thumbnail */}
-      <div className="w-full h-52 sm:h-64 bg-gray-900 relative overflow-hidden border-b border-white/5">
+              <div className="pf-media w-full h-52 sm:h-64 bg-gray-900 relative overflow-hidden border-b border-white/5">
         {project.image ? (
           <img
             src={project.image}
             alt={project.imageAlt || project.title}
             loading="lazy"
-            className={`absolute inset-0 h-full w-full ${project.imageFit === 'contain' ? 'object-contain bg-[#ededed]' : 'object-cover'} group-hover:scale-105 transition-transform duration-700 ease-out`}
+            className={`absolute inset-0 h-full w-full ${project.imageFit === 'contain' ? 'object-contain bg-[#ededed]' : 'object-cover'}`}
             style={{ objectPosition: project.imagePosition || 'center' }}
           />
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center p-8 text-center opacity-30 group-hover:scale-105 transition-transform duration-700 ease-out">
+          <div className="pf-placeholder absolute inset-0 flex items-center justify-center p-8 text-center opacity-30">
             <span className="text-2xl sm:text-3xl font-bold tracking-widest">{project.title.split(':')[0]}</span>
           </div>
         )}
@@ -227,7 +228,7 @@ function ProjectCard({ project, onClick }) {
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0F]/80 via-transparent to-transparent"></div>
       </div>
 
-      <div className="p-5 sm:p-6 md:p-8 flex-1 flex flex-col relative z-10 bg-[#0A0A0F]/30">
+      <div className="pf-body p-5 sm:p-6 md:p-8 flex-1 flex flex-col relative z-10 bg-[#0A0A0F]/30">
         <h3 className="text-xl md:text-2xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-400 transition-all">
           {project.title}
         </h3>
