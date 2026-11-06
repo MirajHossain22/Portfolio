@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, X, Star } from 'lucide-react';
+import { ExternalLink, X } from 'lucide-react';
 import { FiGithub } from 'react-icons/fi';
 import { portfolioData } from '../data/portfolio';
 
@@ -181,8 +181,6 @@ export default function Projects() {
 }
 
 function ProjectCard({ project, onClick }) {
-  const isEcoRise = project.id === 1; // Spans 2 columns on desktop
-
   return (
     <motion.div
       layout
@@ -191,19 +189,9 @@ function ProjectCard({ project, onClick }) {
       exit={{ opacity: 0, scale: 0.9 }}
       whileHover={{ y: -6 }}
       transition={{ duration: 0.4 }}
-      className={`glass group cursor-pointer flex flex-col relative overflow-hidden transition-all duration-300 hover:border-white/30 hover:shadow-[0_0_30px_rgba(124,58,237,0.15)] ${
-        isEcoRise ? 'lg:col-span-2' : 'lg:col-span-1'
-      }`}
+      className="glass group cursor-pointer flex flex-col relative overflow-hidden transition-all duration-300 hover:border-white/30 hover:shadow-[0_0_30px_rgba(124,58,237,0.15)] h-full"
       onClick={onClick}
     >
-      {/* Featured Badge */}
-      {isEcoRise && (
-        <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 flex items-center gap-1.5 px-3 py-1.5 bg-[#7C3AED]/20 border border-[#7C3AED]/30 text-[#FF9FFC] text-[10px] font-bold uppercase tracking-widest rounded-full backdrop-blur-md">
-          <Star className="w-3.5 h-3.5 fill-current" />
-          Featured
-        </div>
-      )}
-
       {/* Thumbnail */}
       <div className="w-full h-52 sm:h-64 bg-gray-900 relative overflow-hidden border-b border-white/5">
         {project.image ? (

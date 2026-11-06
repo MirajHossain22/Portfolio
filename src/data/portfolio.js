@@ -1,8 +1,9 @@
 import mirajPhoto from '../assets/miraj.jpg.jpeg';
 import agribotImage from '../assets/agribot.jpg';
 import ecoriseImage from '../assets/ecorise.png';
-import fcommerceImage from '../assets/fcommerce.jpg';
 import pharmacyImage from '../assets/pharmacy.jpg.jpg';
+import fcommerceOrderDeskImage from '../assets/fcommerce-order-desk.png';
+import ragChatImage from '../assets/rag-chat.png';
 import tomatoMaturityImage from '../assets/tomato-maturity.jpg';
 
 export const portfolioData = {
@@ -77,6 +78,8 @@ export const portfolioData = {
       tags: ["TypeScript", "Next.js", "PostgreSQL", "pgvector (HNSW index)", "Supabase", "Redis", "Google Gemini", "Vercel"],
       description: "A full-stack app where users upload private PDFs and chat with them, getting streamed answers with page-level citations.",
       highlights: ["Passwordless auth, row-level security, Zod validation, and Redis per-user rate limiting.", "93.8% top-1 retrieval accuracy on a 20-question evaluation, with ~3.0 s average latency."],
+      image: ragChatImage,
+      imageAlt: "AI-Powered PDF Document Chat interface",
       github: "https://github.com/MirajHossain22/RAG-chat",
       demo: "https://rag-chat-swart.vercel.app/"
     },
@@ -86,7 +89,7 @@ export const portfolioData = {
       tags: ["Python", "FastAPI", "SQLite", "SQL", "Pydantic", "Gemini API", "Docker", "pytest", "GitHub Actions"],
       description: "FastAPI backend for social-commerce sellers that uses Gemini to turn Bangla, Banglish and English chat messages into validated orders.",
       highlights: ["Transactional order confirmation, inventory deduction, stale-update checks, seller auth, per-seller data isolation, and CSRF protection.", "241 pytest tests, CI, and Docker deployment."],
-      image: fcommerceImage,
+      image: fcommerceOrderDeskImage,
       imageAlt: "F-Commerce Order Desk project dashboard",
       imagePosition: "top",
       github: "https://github.com/MirajHossain22/Fcommerce-order-extractor",
@@ -109,14 +112,14 @@ export const portfolioData = {
       image: ecoriseImage,
       imageAlt: "EcoRise project logo",
       imageFit: "contain",
-      github: "#",
+      github: "https://github.com/MirajHossain22/EcoRise.git",
       demo: "#"
     },
     {
       id: 2,
       title: "AgriBot: Edge AI Crop Disease Diagnostic & Web Advisory System",
       tags: ["Python", "OpenCV", "MobileNetV3", "Raspberry Pi"],
-      description: "Deployed MobileNetV3 on a Raspberry Pi for low-latency classification of 38 crop condition classes. Built an OpenCV pipeline that filtered redundant and motion-blurred frames, cutting redundant downstream computation by over 50%. Added automated leaf ROI extraction and white-background normalization to reduce field-background domain shift before classification. Integrated a web interface with an external AI API (REST) to log edge telemetry and generate structured treatment guidance.",
+      description: "Undergrad thesis (Ongoing). Deployed MobileNetV3 on a Raspberry Pi for low-latency classification of 38 crop condition classes. Built an OpenCV pipeline that filtered redundant and motion-blurred frames, cutting redundant downstream computation by over 50%. Added automated leaf ROI extraction and white-background normalization to reduce field-background domain shift before classification. Integrated a web interface with an external AI API (REST) to log edge telemetry and generate structured treatment guidance.",
       image: agribotImage,
       imageAlt: "AgriBot autonomous crop diagnostic robot",
       imagePosition: "center",
@@ -131,7 +134,7 @@ export const portfolioData = {
       image: tomatoMaturityImage,
       imageAlt: "Custom CNN tomato maturity classification overview",
       imagePosition: "center",
-      github: null,
+      github: "https://github.com/MirajHossain22/Custom-CNN-to-classify-Tomato-Maturity.git",
       demo: null
     },
     {
