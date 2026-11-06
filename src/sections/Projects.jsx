@@ -10,18 +10,22 @@ const projectCategoryMap = {
   2: ['AI/ML', 'IoT'], // AgriBot
   3: ['AI/ML'], // Tomato Maturity CNN
   4: ['Web'], // Pharmacy Expiry Shelf Check
-  5: ['Web', 'AI/ML'] // F-Commerce Order Extractor
+  5: ['Web', 'AI/ML'],
+  6: ['Web', 'AI/ML'],
+  7: ['Web', 'AI/ML'],
+  8: ['Web']
 };
 
 const hasProjectLink = (url) => Boolean(url && url !== '#');
+const projectOrder = [6, 7, 8, 1, 2, 3, 4];
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('All');
   const [selectedProject, setSelectedProject] = useState(null);
 
   const filteredProjects = [...portfolioData.projects]
+    .sort((a, b) => projectOrder.indexOf(a.id) - projectOrder.indexOf(b.id))
     .filter(project => {
-      if (project.id > 3) return false;
       if (activeFilter === 'All') return true;
       return projectCategoryMap[project.id]?.includes(activeFilter);
     });
@@ -145,9 +149,11 @@ export default function Projects() {
                   {selectedProject.description}
                 </p>
 
-                <ul className="pf-highlights pf-modal-highlights mb-8">
-                  {selectedProject.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
-                </ul>
+                {selectedProject.highlights?.length > 0 && (
+                  <ul className="pf-highlights pf-modal-highlights mb-8">
+                    {selectedProject.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+                  </ul>
+                )}
                 
                 {(hasProjectLink(selectedProject.demo) || hasProjectLink(selectedProject.github)) && (
                   <div className="flex flex-wrap gap-4">
@@ -236,16 +242,18 @@ function ProjectCard({ project, onClick }) {
           ))}
         </div>
 
-        <div className="pf-highlight-toggle">
-          <input id={`pf-highlights-${project.id}`} type="checkbox" className="pf-highlight-checkbox" />
-          <label htmlFor={`pf-highlights-${project.id}`} onClick={(e) => e.stopPropagation()}>
-            <span className="pf-checkbox-mark" aria-hidden="true" />
-            <span>Show highlights</span>
-          </label>
-          <ul className="pf-highlights">
-            {project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
-          </ul>
-        </div>
+        {project.highlights?.length > 0 && (
+          <div className="pf-highlight-toggle">
+            <input id={`pf-highlights-${project.id}`} type="checkbox" className="pf-highlight-checkbox" />
+            <label htmlFor={`pf-highlights-${project.id}`} onClick={(e) => e.stopPropagation()}>
+              <span className="pf-checkbox-mark" aria-hidden="true" />
+              <span>Show highlights</span>
+            </label>
+            <ul className="pf-highlights">
+              {project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+            </ul>
+          </div>
+        )}
 
         {/* Action Buttons */}
         {(hasProjectLink(project.demo) || hasProjectLink(project.github)) && (

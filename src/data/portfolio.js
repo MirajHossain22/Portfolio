@@ -1,5 +1,9 @@
 import mirajPhoto from '../assets/miraj.jpg.jpeg';
+import agribotImage from '../assets/agribot.jpg';
+import ecoriseImage from '../assets/ecorise.png';
 import fcommerceImage from '../assets/fcommerce.jpg';
+import pharmacyImage from '../assets/pharmacy.jpg.jpg';
+import tomatoMaturityImage from '../assets/tomato-maturity.jpg';
 
 export const portfolioData = {
   hero: {
@@ -68,7 +72,7 @@ export const portfolioData = {
   },
   projects: [
     {
-      id: 1,
+      id: 6,
       title: "AI-Powered PDF Document Chat (RAG)",
       tags: ["TypeScript", "Next.js", "PostgreSQL", "pgvector (HNSW index)", "Supabase", "Redis", "Google Gemini", "Vercel"],
       description: "A full-stack app where users upload private PDFs and chat with them, getting streamed answers with page-level citations.",
@@ -77,7 +81,7 @@ export const portfolioData = {
       demo: "https://rag-chat-swart.vercel.app/"
     },
     {
-      id: 2,
+      id: 7,
       title: "F-Commerce Order Desk (Python Backend & REST API)",
       tags: ["Python", "FastAPI", "SQLite", "SQL", "Pydantic", "Gemini API", "Docker", "pytest", "GitHub Actions"],
       description: "FastAPI backend for social-commerce sellers that uses Gemini to turn Bangla, Banglish and English chat messages into validated orders.",
@@ -89,13 +93,57 @@ export const portfolioData = {
       demo: "https://fcommerce-order-extractor.onrender.com/"
     },
     {
-      id: 3,
+      id: 8,
       title: "Task Tracker API (Mini-Jira Backend)",
       tags: ["C#", "ASP.NET Core 8", "PostgreSQL", "Redis", "EF Core", "Docker", "xUnit", "GitHub Actions"],
       description: "A Jira-style task management REST API.",
       highlights: ["JWT auth with BCrypt, owner-scoped access, layered architecture (Controllers → Services → Repositories), FluentValidation, filtering/sorting/pagination, and a workflow state machine.", "Parameterized SQL reporting, Redis caching with version-based invalidation, 10 xUnit/Moq tests, and Swagger docs."],
       github: "https://github.com/MirajHossain22/mini-jira",
       demo: null
+    },
+    {
+      id: 1,
+      title: "EcoRise: Full-Stack Sustainability & Eco-Audit Platform",
+      tags: ["React", "PHP", "MySQL", "REST API"],
+      description: "Built a full-stack sustainability web app backed by 10+ relational database schemas and dynamic user views. Designed responsive REST API endpoints and state management workflows that reduced client-side payload latency on the reporting dashboard. Integrated React components with PHP server logic across multi-step audit forms, validating input on both client and server. Implemented secure authentication and role-based access control.",
+      image: ecoriseImage,
+      imageAlt: "EcoRise project logo",
+      imageFit: "contain",
+      github: "#",
+      demo: "#"
+    },
+    {
+      id: 2,
+      title: "AgriBot: Edge AI Crop Disease Diagnostic & Web Advisory System",
+      tags: ["Python", "OpenCV", "MobileNetV3", "Raspberry Pi"],
+      description: "Deployed MobileNetV3 on a Raspberry Pi for low-latency classification of 38 crop condition classes. Built an OpenCV pipeline that filtered redundant and motion-blurred frames, cutting redundant downstream computation by over 50%. Added automated leaf ROI extraction and white-background normalization to reduce field-background domain shift before classification. Integrated a web interface with an external AI API (REST) to log edge telemetry and generate structured treatment guidance.",
+      image: agribotImage,
+      imageAlt: "AgriBot autonomous crop diagnostic robot",
+      imagePosition: "center",
+      github: "#",
+      demo: "#"
+    },
+    {
+      id: 3,
+      title: "Custom CNN for Tomato Maturity Classification",
+      tags: ["Python", "PyTorch", "NumPy", "scikit-learn", "Deep Learning"],
+      description: "Built a custom CNN from scratch in PyTorch to classify tomatoes into four maturity classes: Mature, Immature, Fresh, and Rotten. Prepared a 2,000-image dataset with preprocessing and augmentation, compared variants with Batch Normalization and Dropout, and evaluated them using accuracy, precision, recall, F1-score, confusion matrices, and training-validation curves.",
+      image: tomatoMaturityImage,
+      imageAlt: "Custom CNN tomato maturity classification overview",
+      imagePosition: "center",
+      github: null,
+      demo: null
+    },
+    {
+      id: 4,
+      title: "Pharmacy Expiry Shelf Check",
+      tags: ["React", "Next.js", "JavaScript", "Tailwind CSS", "Vercel"],
+      description: "Built a responsive React and Next.js SPA that flags near-expiry pharmacy stock within the 60-day distributor return window. It calculates dynamic date tiers and real-time Value at Risk in BDT client-side, with instant KPI updates and item archiving after return confirmation—without page reloads.",
+      image: pharmacyImage,
+      imageAlt: "Pharmacy Expiry Shelf Check dashboard",
+      imagePosition: "center",
+      github: null,
+      demo: "https://lsh26-t001-p02.vercel.app/"
     },
     /* {
     // Legacy project data retained for reference; not rendered.
