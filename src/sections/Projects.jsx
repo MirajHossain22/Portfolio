@@ -82,7 +82,7 @@ export default function Projects() {
                 className={`px-6 py-2 rounded-full font-medium transition-all duration-300 cursor-pointer ${
                   activeFilter === filter 
                     ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white shadow-[0_0_15px_rgba(124,58,237,0.4)]'
-                    : 'glass text-gray-400 hover:text-white hover:bg-white/10 border-white/5'
+                    : 'glass text-gray-200 hover:text-white hover:bg-white/10 border-white/10 font-semibold'
                 }`}
               >
                 {filter}

@@ -42,23 +42,23 @@ export default function Education() {
                   transition={{ duration: 0.6, type: "spring", stiffness: 200, damping: 20 }}
                   className={`w-full pl-12 md:pl-0 md:w-[45%] ${isLeft ? 'md:pr-12' : 'md:pl-12'}`}
                 >
-                  <div className={`glass p-6 md:p-8 hover:-translate-y-1 transition-transform duration-300 relative group overflow-hidden border border-white/5 hover:border-white/20 ${isLeft ? 'md:text-right' : 'text-left'}`}>
+                  <div className={`glass p-6 md:p-8 hover:-translate-y-1 transition-transform duration-300 relative group overflow-hidden border border-white/10 hover:border-white/25 shadow-xl ${isLeft ? 'md:text-right' : 'text-left'}`}>
                     <div className="absolute inset-0 bg-gradient-to-br from-white/0 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                     
                     <div className={`flex flex-col md:flex-row items-start md:items-center justify-between mb-4 gap-3 ${isLeft ? 'md:flex-row-reverse' : ''}`}>
-                      <h3 className="text-xl md:text-2xl font-bold text-white">{edu.degree}</h3>
-                      <span className="label-mono flex items-center justify-center gap-1.5 text-[#FF9FFC] bg-[#FF9FFC]/10 border border-[#FF9FFC]/20 px-3 py-1 rounded-md shrink-0">
+                      <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight">{edu.degree}</h3>
+                      <span className="label-mono flex items-center justify-center gap-1.5 text-purple-300 bg-purple-950/70 border border-purple-500/40 px-3 py-1 rounded-md shrink-0 font-semibold shadow-sm">
                         <Calendar className="w-3.5 h-3.5" />
                         {edu.period}
                       </span>
                     </div>
                     
-                    <h4 className={`text-lg text-gray-300 mb-4 font-medium flex items-center gap-2 ${isLeft ? 'md:justify-end md:flex-row-reverse' : ''}`}>
-                      <GraduationCap className="w-5 h-5 text-[#2563EB]" />
+                    <h4 className={`text-lg text-white/90 mb-3 font-semibold flex items-center gap-2 ${isLeft ? 'md:justify-end md:flex-row-reverse' : ''}`}>
+                      <GraduationCap className="w-5 h-5 text-blue-400" />
                       {edu.institution}
                     </h4>
                     
-                    <p className="text-gray-400 leading-relaxed font-light text-sm md:text-base">
+                    <p className="text-gray-200 leading-relaxed font-normal text-sm md:text-base">
                       {edu.details}
                     </p>
                   </div>
@@ -80,7 +80,7 @@ export default function Education() {
                transition={{ duration: 0.6 }}
                className="w-full pl-12 md:pl-0 flex justify-center"
              >
-               <div className="glass p-6 sm:p-8 md:p-10 hover:-translate-y-1 transition-transform duration-300 relative group max-w-3xl w-full border border-white/5 hover:border-[#0D9488]/30">
+               <div className="glass p-6 sm:p-8 md:p-10 hover:-translate-y-1 transition-transform duration-300 relative group max-w-3xl w-full border border-white/10 hover:border-[#0D9488]/40 shadow-xl">
                  {/* Teal Glow */}
                  <div className="absolute inset-0 bg-gradient-to-br from-[#0D9488]/0 to-[#0D9488]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                  
@@ -90,25 +90,25 @@ export default function Education() {
                       <h3 className="text-xl font-bold text-white">Publication</h3>
                     </div>
                     <div className="flex flex-wrap items-center gap-3">
-                      <span className="label-mono flex items-center gap-1.5 text-gray-400 bg-white/5 px-3 py-1 rounded-md border border-white/10">
+                      <span className="label-mono flex items-center gap-1.5 text-gray-200 bg-black/40 px-3 py-1 rounded-md border border-white/20 font-semibold shadow-sm">
                         <Calendar className="w-3.5 h-3.5" />
                         {portfolioData.publications[0].date}
                       </span>
-                      <span className="label-mono flex items-center gap-1.5 text-gray-400 bg-white/5 px-3 py-1 rounded-md border border-white/10">
+                      <span className="label-mono flex items-center gap-1.5 text-gray-200 bg-black/40 px-3 py-1 rounded-md border border-white/20 font-semibold shadow-sm">
                         <MapPin className="w-3.5 h-3.5" />
                         {portfolioData.publications[0].location}
                       </span>
                     </div>
                  </div>
                  
-                 <h4 className="text-lg md:text-xl text-gray-200 mb-4 font-semibold leading-snug">
+                 <h4 className="text-lg md:text-xl text-white mb-4 font-bold leading-snug">
                    "{portfolioData.publications[0].title}"
                  </h4>
                  
-                 <p className="text-gray-400 font-light italic mb-4 border-l-2 border-[#0D9488]/50 pl-4 py-1">
+                 <p className="text-teal-300 font-medium italic mb-4 border-l-2 border-[#0D9488] pl-4 py-1">
                    Published in: {portfolioData.publications[0].conference}
                  </p>
-                 <p className="text-gray-400 leading-relaxed font-light text-sm md:text-base">
+                 <p className="text-gray-200 leading-relaxed font-normal text-sm md:text-base">
                    {portfolioData.publications[0].description}
                  </p>
                </div>

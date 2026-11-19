@@ -58,7 +58,7 @@ export default function Contact() {
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-6">
                 Let's build <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7C3AED] to-[#FF9FFC]">something.</span>
               </h2>
-              <p className="text-gray-400 text-lg md:text-xl leading-relaxed mb-10 font-light">
+              <p className="text-gray-200 text-lg md:text-xl leading-relaxed mb-10 font-normal">
                 Open to internships, freelance projects, and collaborations. 
                 Whether you have a question or just want to say hi, I'll try my best to get back to you!
               </p>
@@ -67,15 +67,15 @@ export default function Contact() {
                 {/* Email Copy Button */}
                 <button 
                   onClick={handleCopyEmail}
-                  className="flex items-center justify-between gap-3 p-3 sm:p-4 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 rounded-xl transition-all group w-full max-w-md min-w-0"
+                  className="flex items-center justify-between gap-3 p-3 sm:p-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/25 rounded-xl transition-all group w-full max-w-md min-w-0"
                 >
                   <div className="flex items-center gap-3 sm:gap-4 min-w-0">
                     <div className="w-10 h-10 rounded-full bg-[#7C3AED]/20 flex items-center justify-center group-hover:scale-110 transition-transform">
                       <Mail className="w-5 h-5 text-[#FF9FFC]" />
                     </div>
                     <div className="text-left min-w-0">
-                      <p className="text-sm text-gray-500">Email me at</p>
-                      <p className="text-gray-200 font-medium tracking-wide break-all">{portfolioData.contact.email}</p>
+                      <p className="text-xs uppercase tracking-wider font-semibold text-gray-400">Email me at</p>
+                      <p className="text-white font-medium tracking-wide break-all">{portfolioData.contact.email}</p>
                     </div>
                   </div>
                   <div className="relative w-5 h-5 shrink-0">
@@ -86,7 +86,7 @@ export default function Contact() {
                         </motion.div>
                       ) : (
                         <motion.div key="copy" initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }} className="absolute inset-0">
-                          <Copy className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" />
+                          <Copy className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -99,8 +99,8 @@ export default function Contact() {
                     <Phone className="w-5 h-5 text-[#2563EB]" />
                   </div>
                   <div className="text-left">
-                    <p className="text-sm text-gray-500">Call me at</p>
-                    <p className="text-gray-200 font-medium tracking-wide">{portfolioData.contact.phone}</p>
+                    <p className="text-xs uppercase tracking-wider font-semibold text-gray-400">Call me at</p>
+                    <p className="text-white font-medium tracking-wide">{portfolioData.contact.phone}</p>
                   </div>
                 </div>
                 
@@ -110,8 +110,8 @@ export default function Contact() {
                     <MapPin className="w-5 h-5 text-[#0D9488]" />
                   </div>
                   <div className="text-left">
-                    <p className="text-sm text-gray-500">Location</p>
-                    <p className="text-gray-200 font-medium tracking-wide">{portfolioData.contact.address}</p>
+                    <p className="text-xs uppercase tracking-wider font-semibold text-gray-400">Location</p>
+                    <p className="text-white font-medium tracking-wide">{portfolioData.contact.address}</p>
                   </div>
                 </div>
                 

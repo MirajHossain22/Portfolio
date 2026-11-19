@@ -1,8 +1,6 @@
 import React from 'react';
-import Antigravity from './components/Antigravity';
-import MeshGradient from './components/MeshGradient';
+import EvolveBackground from './components/EvolveBackground';
 import Navbar from './components/Navbar';
-import CustomCursor from './components/CustomCursor';
 import Footer from './components/Footer';
 import PortraitCard from './components/PortraitCard';
 import SocialCard from './components/SocialCard';
@@ -17,9 +15,7 @@ import { portfolioData } from './data/portfolio';
 function App() {
   return (
     <>
-      <CustomCursor />
-      <MeshGradient />
-      <Antigravity />
+      <EvolveBackground />
       <Navbar />
       
       <main className="relative w-full flex flex-col pt-20 sm:pt-24">

@@ -40,7 +40,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative min-h-screen flex flex-col items-center justify-center bg-[#0C0C0C] px-5 sm:px-8 md:px-10 py-24 sm:py-32 overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center justify-center bg-transparent px-5 sm:px-8 md:px-10 py-24 sm:py-32 overflow-hidden"
     >
       {/* Top-Left Glowing 3D Glass Moon */}
       <motion.div
@@ -115,7 +115,7 @@ export default function About() {
       </motion.div>
 
       {/* Centered Content Column */}
-      <div className="relative z-10 flex flex-col items-center gap-10 sm:gap-14 md:gap-16 w-full max-w-4xl text-center">
+      <div className="relative z-10 flex flex-col items-center gap-8 sm:gap-10 md:gap-12 w-full max-w-4xl text-center">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -123,15 +123,18 @@ export default function About() {
           transition={{ duration: 0.8 }}
           className="w-full"
         >
-          <h2 className="hero-heading font-black uppercase leading-none tracking-tight text-center text-[clamp(3.5rem,12vw,140px)] select-none">
+          <h2 className="hero-heading font-black uppercase leading-none tracking-tight text-center text-[clamp(3.5rem,12vw,140px)] select-none drop-shadow-[0_10px_35px_rgba(0,0,0,0.95)]">
             About me
           </h2>
         </motion.div>
 
-        <AnimatedText
-          text={ABOUT_PARAGRAPH}
-          className="text-[#D7E2EA] font-medium text-center leading-relaxed max-w-[620px] text-[clamp(1rem,2vw,1.35rem)] px-4"
-        />
+        {/* Frosted Dark Glass Card for guaranteed 100% text readability */}
+        <div className="relative max-w-[680px] w-full px-6 py-6 sm:px-8 sm:py-8 rounded-3xl bg-[#0A0A12]/80 backdrop-blur-2xl border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.7)]">
+          <AnimatedText
+            text={ABOUT_PARAGRAPH}
+            className="text-white font-medium text-center leading-relaxed text-[clamp(1rem,2vw,1.25rem)] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+          />
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

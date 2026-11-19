@@ -57,24 +57,26 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 glass rounded-none border-x-0 border-t-0 border-b-white/5">
+      <header className="fixed top-4 sm:top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
         {/* Scroll Progress Bar */}
         <motion.div
-          className="absolute top-0 left-0 right-0 h-[2px] origin-left z-50 bg-gradient-to-r from-[#7C3AED] to-[#2563EB]"
+          className="fixed top-0 left-0 right-0 h-[2.5px] origin-left z-50 bg-gradient-to-r from-[#7C3AED] to-[#2563EB]"
           style={{ scaleX }}
         />
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex justify-between items-center relative z-10">
+        <div className="flex items-center justify-between gap-3 sm:gap-6 w-full max-w-[760px] pointer-events-auto">
+          {/* Circular Logo Button */}
           <a 
             href="#hero" 
             onClick={(e) => handleLinkClick(e, '#hero')}
-            className="label-mono !text-[1.5rem] tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 hover:to-white transition-all"
+            className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white text-[#111111] font-black text-sm flex items-center justify-center shadow-[0_4px_16px_rgba(0,0,0,0.25)] hover:scale-105 active:scale-95 transition-all shrink-0 select-none tracking-tight"
+            aria-label="Go to top"
           >
             MH.
           </a>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
+          {/* Floating White Center Nav Pill */}
+          <nav className="hidden md:flex items-center justify-around flex-1 max-w-[460px] h-11 sm:h-12 px-5 bg-white rounded-full shadow-[0_4px_16px_rgba(0,0,0,0.25)]">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.substring(1);
               return (
@@ -82,36 +84,39 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleLinkClick(e, link.href)}
-                  className={`relative text-sm font-medium transition-colors py-2 group ${
-                    isActive ? 'text-white drop-shadow-[0_0_8px_rgba(124,58,237,0.8)]' : 'text-gray-400 hover:text-white'
+                  className={`relative inline-flex items-center justify-center h-full px-3 text-sm font-medium transition-opacity text-[#2e2e2e] ${
+                    isActive ? 'opacity-100 font-semibold' : 'opacity-55 hover:opacity-90'
                   }`}
                 >
                   {link.name}
-                  {/* Underline grow effect */}
-                  <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-gradient-to-r from-[#7C3AED] to-[#2563EB] transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                  {isActive && (
+                    <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-[3px] h-[3px] rounded-full bg-[#000000] shadow-[-5px_0_0_#000000,5px_0_0_#000000]" />
+                  )}
                 </a>
               );
             })}
-            <a 
-              href={portfolioData.about.resumeLink} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="btn-ghost !py-2 !px-5 text-sm ml-2"
-            >
-              Resume
-            </a>
           </nav>
+
+          {/* Dark Pill Resume Button */}
+          <a 
+            href={portfolioData.about.resumeLink} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="hidden md:inline-flex items-center justify-center h-11 sm:h-12 px-6 rounded-full bg-[#28282a] text-[#c8c8c8] hover:text-white hover:bg-[#323234] shadow-[0_4px_16px_rgba(0,0,0,0.25)] text-sm font-medium transition-all hover:-translate-y-0.5 shrink-0"
+          >
+            Resume
+          </a>
 
           {/* Mobile Menu Toggle */}
           <button 
-            className="md:hidden text-gray-300 hover:text-white z-50 relative p-2 focus-visible:outline-none"
+            className="md:hidden w-11 h-11 rounded-full bg-[#28282a] text-white flex items-center justify-center shadow-md shrink-0 focus-visible:outline-none hover:bg-[#323234] transition-colors"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
             {isOpen ? (
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             )}
           </button>
         </div>

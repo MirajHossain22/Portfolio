@@ -2,14 +2,18 @@ import React, { useMemo, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 function AnimatedChar({ char, progress, range }) {
-  const opacity = useTransform(progress, range, [0.18, 1]);
+  const opacity = useTransform(progress, range, [0.38, 1]);
+  const color = useTransform(progress, range, ['#9ca3af', '#ffffff']);
 
   return (
     <span className="relative inline-block">
       <span className="opacity-0 select-none" aria-hidden="true">
         {char}
       </span>
-      <motion.span style={{ opacity }} className="absolute left-0 top-0">
+      <motion.span 
+        style={{ opacity, color }} 
+        className="absolute left-0 top-0 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]"
+      >
         {char}
       </motion.span>
     </span>
