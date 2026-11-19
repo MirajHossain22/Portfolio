@@ -9,6 +9,100 @@ const filterCategories = {
   'IoT': ['Languages', 'Hardware & IoT', 'AI & Computer Vision', 'Tools & Practices']
 };
 
+const categoryMetadata = {
+  'Languages': {
+    tag: 'APEX // 01 · SYNTAX',
+    titleMain: 'Core',
+    titleBold: 'Languages',
+    metrics: [
+      { label: 'Paradigm', value: 'Multi-Par.' },
+      { label: 'Efficiency', value: 'High' },
+      { label: 'Focus', value: 'Full-Stack' },
+      { label: 'Status', value: 'Active' },
+    ],
+    description: 'Foundational programming and scripting languages powering performant web backends, data parsing, and machine learning workflows.',
+    btnLabel: 'Active Stack'
+  },
+  'Backend & APIs': {
+    tag: 'APEX // 02 · ARCHITECTURE',
+    titleMain: 'Backend &',
+    titleBold: 'APIs',
+    metrics: [
+      { label: 'Arch', value: 'REST / Micro' },
+      { label: 'Security', value: 'RBAC / Auth' },
+      { label: 'Caching', value: 'Redis Tier' },
+      { label: 'Latency', value: 'Sub-100ms' },
+    ],
+    description: 'Scalable server-side architectures, transactional data isolation, RESTful routing, and asynchronous task execution.',
+    btnLabel: 'Active Stack'
+  },
+  'Frontend': {
+    tag: 'APEX // 03 · INTERFACES',
+    titleMain: 'Modern',
+    titleBold: 'Frontend',
+    metrics: [
+      { label: 'Core', value: 'React / Next' },
+      { label: 'Styling', value: 'Tailwind' },
+      { label: 'UX', value: 'Responsive' },
+      { label: 'Render', value: 'Hydrated' },
+    ],
+    description: 'Component-driven interfaces built with responsive design systems, micro-animations, and client-side state management.',
+    btnLabel: 'Active Stack'
+  },
+  'Databases': {
+    tag: 'APEX // 04 · PERSISTENCE',
+    titleMain: 'Data &',
+    titleBold: 'Databases',
+    metrics: [
+      { label: 'Engines', value: 'Postgres / SQL' },
+      { label: 'Integrity', value: 'ACID Strict' },
+      { label: 'Vector', value: 'HNSW / pgvec' },
+      { label: 'Status', value: 'Nominal' },
+    ],
+    description: 'Relational schema modeling, normalized entity designs, parameterized reporting, and vector similarity indexing.',
+    btnLabel: 'Active Stack'
+  },
+  'Tools & Practices': {
+    tag: 'APEX // 05 · DEVOPS',
+    titleMain: 'DevOps &',
+    titleBold: 'Practices',
+    metrics: [
+      { label: 'Deploy', value: 'Docker' },
+      { label: 'VCS', value: 'Git Flow' },
+      { label: 'Kernel', value: 'Linux CLI' },
+      { label: 'Testing', value: 'Automated' },
+    ],
+    description: 'Continuous integration, containerized workflows, Unix shell automation, and test-driven development practices.',
+    btnLabel: 'Active Stack'
+  },
+  'AI & Computer Vision': {
+    tag: 'APEX // 06 · INTELLIGENCE',
+    titleMain: 'AI &',
+    titleBold: 'Vision',
+    metrics: [
+      { label: 'Vision', value: 'YOLO / OpenCV' },
+      { label: 'Inference', value: 'Real-time' },
+      { label: 'Pipelines', value: 'RAG / Agents' },
+      { label: 'Status', value: 'Edge-Ready' },
+    ],
+    description: 'Deep learning models deployed for edge classification, ROI feature extraction, and LLM-powered multi-agent reasoning.',
+    btnLabel: 'Active Stack'
+  },
+  'Hardware & IoT': {
+    tag: 'APEX // 07 · EMBEDDED',
+    titleMain: 'Hardware &',
+    titleBold: 'IoT',
+    metrics: [
+      { label: 'Chips', value: 'RPi / ESP32' },
+      { label: 'Telemetry', value: 'Live Stream' },
+      { label: 'Sensors', value: 'Multi-Bus' },
+      { label: 'Power', value: 'Low-Draw' },
+    ],
+    description: 'Autonomous hardware prototyping, wireless video streaming pipelines, sensor telemetry, and embedded diagnostic robots.',
+    btnLabel: 'Active Stack'
+  }
+};
+
 export default function Skills() {
   const [activeFilter, setActiveFilter] = useState('All');
   
@@ -18,7 +112,9 @@ export default function Skills() {
 
   return (
     <section id="skills" className="py-16 sm:py-24 px-4 sm:px-6 relative z-10 min-h-screen">
-      <div className="max-w-7xl mx-auto">
+      <div className="skills-nebula" aria-hidden="true" />
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -46,7 +142,7 @@ export default function Skills() {
           </div>
         </motion.div>
 
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <AnimatePresence mode="popLayout">
             {filteredSkills.map((categoryGroup, index) => (
               <SkillCard key={categoryGroup.category} categoryGroup={categoryGroup} index={index} />
@@ -59,6 +155,21 @@ export default function Skills() {
 }
 
 function SkillCard({ categoryGroup, index }) {
+  const [isActivated, setIsActivated] = useState(false);
+  const meta = categoryMetadata[categoryGroup.category] || {
+    tag: `APEX // 0${index + 1} · STACK`,
+    titleMain: categoryGroup.category.split(' ')[0] || 'Core',
+    titleBold: categoryGroup.category.split(' ').slice(1).join(' ') || 'Domain',
+    metrics: [
+      { label: 'Status', value: 'Active' },
+      { label: 'Efficiency', value: '99.8%' },
+      { label: 'Count', value: `${categoryGroup.items.length} Tech` },
+      { label: 'Mode', value: 'Nominal' }
+    ],
+    description: 'Specialized technical domain skills, development tooling, and implementation capabilities.',
+    btnLabel: 'Active Stack'
+  };
+
   return (
     <motion.div
       layout
@@ -66,36 +177,54 @@ function SkillCard({ categoryGroup, index }) {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.4 }}
-      className="glass p-6 md:p-8 flex flex-col relative overflow-hidden group hover:-translate-y-1 hover:border-white/20 transition-all duration-300"
+      className="card-frame"
     >
-      <h3 className="text-xl font-bold mb-6 text-white">{categoryGroup.category}</h3>
-      
-      <div className="flex flex-wrap gap-3 mb-6 relative z-10">
-        {categoryGroup.items.map((skill, i) => (
-          <span 
-            key={i} 
-            className="px-3 py-1.5 bg-[#0A0A0F]/50 border border-white/5 rounded-lg text-sm text-gray-300 font-medium transition-all hover:border-[#7C3AED]/50 hover:text-white hover:bg-[#7C3AED]/10 hover:shadow-[0_0_15px_rgba(124,58,237,0.2)] cursor-default"
+      <div className="laser-border" aria-hidden="true" />
+
+      <div className="card-body">
+        <div className="grid-overlay" aria-hidden="true" />
+        <div className="sweep" aria-hidden="true" />
+
+        <header className="header">
+          <span className="system-tag">{meta.tag}</span>
+          <p className="main-title">
+            {meta.titleMain} <b>{meta.titleBold}</b>
+          </p>
+        </header>
+
+        <div className="metrics">
+          {meta.metrics.map((m, i) => (
+            <div key={i} className="metric-box">
+              <span className="metric-label">{m.label}</span>
+              <span className="metric-value">{m.value}</span>
+            </div>
+          ))}
+        </div>
+
+        <p className="description">
+          {meta.description}
+        </p>
+
+        <div className="skill-chips">
+          {categoryGroup.items.map((skill, i) => (
+            <span key={i} className="skill-chip">
+              {skill}
+            </span>
+          ))}
+        </div>
+
+        <div className="btn-container">
+          <button 
+            type="button"
+            onClick={() => setIsActivated(!isActivated)}
+            className={`action-btn ${isActivated ? 'active' : ''}`}
+            aria-label={`${meta.titleMain} ${meta.titleBold} status`}
           >
-            {skill}
-          </span>
-        ))}
-      </div>
-      
-      {/* Animated Gradient Progress Bar */}
-      <div className="mt-auto pt-4 border-t border-white/5 relative z-10">
-        <div className="h-1.5 w-full bg-[#0A0A0F] rounded-full overflow-hidden">
-          <motion.div 
-            initial={{ width: 0 }}
-            whileInView={{ width: "100%" }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.5, delay: 0.2 + (index * 0.1), ease: "easeOut" }}
-            className="h-full bg-gradient-to-r from-[#7C3AED] via-[#2563EB] to-[#0D9488]"
-          />
+            <span className={`w-2 h-2 rounded-full transition-all duration-300 ${isActivated ? 'bg-emerald-400 shadow-[0_0_8px_#34d399]' : 'bg-cyan-400 shadow-[0_0_6px_#22d3ee]'}`} />
+            <span>{isActivated ? 'STACK ENGAGED' : meta.btnLabel}</span>
+          </button>
         </div>
       </div>
-      
-      {/* Ambient background glow on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/0 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
     </motion.div>
   );
 }
