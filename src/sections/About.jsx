@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Download } from 'lucide-react';
+import { MapPin, GraduationCap, Briefcase, Code2, BookOpen, Languages, Download } from 'lucide-react';
 import { portfolioData } from '../data/portfolio';
 import AnimatedText from '../components/AnimatedText';
 
@@ -14,7 +14,29 @@ export const ABOUT_DECORATIVE_ASSETS = {
 const ABOUT_PARAGRAPH =
   "Computer Science & Engineering graduate (AI & Information Systems). I build full-stack web applications with React, PHP, and MySQL, including REST APIs, secure authentication, and role-based access control. I also deploy low-latency deep learning models on edge hardware using Python and OpenCV. Let's build something incredible together!";
 
+const smallTiles = [
+  { icon: MapPin, label: "Location", value: "Gazipur, Dhaka", color: "text-red-400", r: -20 },
+  { icon: GraduationCap, label: "Education", value: "BSc in CSE", color: "text-violet-400", r: -12 },
+  { icon: Briefcase, label: "Status", value: "Open to Intern Roles", color: "text-teal-400", r: -4 },
+  { icon: Code2, label: "Core Stack", value: "React · PHP · Python", color: "text-blue-400", r: 4 },
+  { icon: BookOpen, label: "Publication", value: "1 Peer Paper", color: "text-[#FF9FFC]", r: 12 },
+  { icon: Languages, label: "Languages", value: "Bengali · English", color: "text-emerald-400", r: 20 }
+];
+
 export default function About() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.08 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
+  };
+
   return (
     <section
       id="about"
@@ -28,7 +50,7 @@ export default function About() {
         transition={{ duration: 0.9, delay: 0.1 }}
         animate={{ y: [0, -12, 0] }}
         transition={{ y: { duration: 5, repeat: Infinity, ease: "easeInOut" } }}
-        className="pointer-events-none select-none absolute top-[5%] left-[2%] sm:left-[4%] md:left-[6%] z-0 w-[100px] sm:w-[150px] md:w-[190px]"
+        className="pointer-events-none select-none absolute top-[4%] left-[2%] sm:left-[4%] md:left-[6%] z-0 w-[100px] sm:w-[150px] md:w-[190px]"
       >
         <img
           src={ABOUT_DECORATIVE_ASSETS.moon}
@@ -46,7 +68,7 @@ export default function About() {
         transition={{ duration: 0.9, delay: 0.15 }}
         animate={{ y: [0, -14, 0] }}
         transition={{ y: { duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.4 } }}
-        className="pointer-events-none select-none absolute top-[5%] right-[2%] sm:right-[4%] md:right-[6%] z-0 w-[100px] sm:w-[150px] md:w-[190px]"
+        className="pointer-events-none select-none absolute top-[4%] right-[2%] sm:right-[4%] md:right-[6%] z-0 w-[100px] sm:w-[150px] md:w-[190px]"
       >
         <img
           src={ABOUT_DECORATIVE_ASSETS.lego}
@@ -64,7 +86,7 @@ export default function About() {
         transition={{ duration: 0.9, delay: 0.2 }}
         animate={{ y: [0, -10, 0] }}
         transition={{ y: { duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.2 } }}
-        className="pointer-events-none select-none absolute bottom-[6%] left-[3%] sm:left-[6%] md:left-[8%] z-0 w-[90px] sm:w-[130px] md:w-[170px]"
+        className="pointer-events-none select-none absolute top-[48%] left-[2%] sm:left-[3%] md:left-[4%] z-0 w-[80px] sm:w-[120px] md:w-[150px]"
       >
         <img
           src={ABOUT_DECORATIVE_ASSETS.object3d}
@@ -82,7 +104,7 @@ export default function About() {
         transition={{ duration: 0.9, delay: 0.25 }}
         animate={{ y: [0, -12, 0] }}
         transition={{ y: { duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 0.6 } }}
-        className="pointer-events-none select-none absolute bottom-[6%] right-[3%] sm:right-[6%] md:right-[8%] z-0 w-[110px] sm:w-[150px] md:w-[190px]"
+        className="pointer-events-none select-none absolute top-[48%] right-[2%] sm:right-[3%] md:right-[4%] z-0 w-[90px] sm:w-[130px] md:w-[160px]"
       >
         <img
           src={ABOUT_DECORATIVE_ASSETS.group3d}
@@ -136,6 +158,34 @@ export default function About() {
           </a>
         </motion.div>
       </div>
+
+      {/* Fanned-out Glass Deck (From Uiverse.io by codebykay101) */}
+      <motion.div 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.8 }}
+        className="about-deck-container mt-16 sm:mt-24 relative z-10"
+      >
+        {smallTiles.map((tile, idx) => {
+          const Icon = tile.icon;
+          return (
+            <div
+              key={idx}
+              data-text={tile.label}
+              style={{ '--r': tile.r }}
+              className="about-deck-glass"
+            >
+              <div className="deck-icon">
+                <Icon className={`w-8 h-8 ${tile.color}`} strokeWidth={1.75} />
+              </div>
+              <span className="deck-value">
+                {tile.value}
+              </span>
+            </div>
+          );
+        })}
+      </motion.div>
     </section>
   );
 }
