@@ -112,8 +112,6 @@ export default function Skills() {
 
   return (
     <section id="skills" className="py-16 sm:py-24 px-4 sm:px-6 relative z-10 min-h-screen">
-      <div className="skills-nebula" aria-hidden="true" />
-      
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -179,11 +177,8 @@ function SkillCard({ categoryGroup, index }) {
       transition={{ duration: 0.4 }}
       className="card-frame"
     >
-      <div className="laser-border" aria-hidden="true" />
-
       <div className="card-body">
         <div className="grid-overlay" aria-hidden="true" />
-        <div className="sweep" aria-hidden="true" />
 
         <header className="header">
           <span className="system-tag">{meta.tag}</span>
@@ -220,7 +215,6 @@ function SkillCard({ categoryGroup, index }) {
             className={`action-btn ${isActivated ? 'active' : ''}`}
             aria-label={`${meta.titleMain} ${meta.titleBold} status`}
           >
-            <span className={`w-2 h-2 rounded-full transition-all duration-300 ${isActivated ? 'bg-emerald-400 shadow-[0_0_8px_#34d399]' : 'bg-cyan-400 shadow-[0_0_6px_#22d3ee]'}`} />
             <span>{isActivated ? 'STACK ENGAGED' : meta.btnLabel}</span>
           </button>
         </div>
