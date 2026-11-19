@@ -428,6 +428,90 @@
 }
 
 /* ==========================================================================
+   Hero & About Typography and Glowing Button Surfaces (Google AI Studio style)
+   ========================================================================== */
+
+.hero-heading {
+  background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.contact-btn-surface {
+  background: linear-gradient(123deg, #18011F 7%, #B600A8 37%, #7621B0 72%, #BE4C00 100%);
+  box-shadow: 0px 4px 14px rgba(181, 1, 167, 0.35), 4px 4px 12px #7721B1 inset;
+  outline: 2px solid #FFFFFF;
+  outline-offset: -3px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.contact-btn-surface:hover {
+  transform: scale(1.04);
+  box-shadow: 0px 6px 20px rgba(181, 1, 167, 0.55), 4px 4px 16px #7721B1 inset;
+}
+
+.contact-btn-surface:focus-visible {
+  outline: 2px solid #FFFFFF;
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   Project Cards - Circulating LED Blob Animation (From Uiverse by dylanharriscameron)
+   ========================================================================== */
+
+@keyframes blob-bounce {
+  0% {
+    transform: translate(-100%, -100%) translate3d(0, 0, 0);
+  }
+  25% {
+    transform: translate(-100%, -100%) translate3d(100%, 0, 0);
+  }
+  50% {
+    transform: translate(-100%, -100%) translate3d(100%, 100%, 0);
+  }
+  75% {
+    transform: translate(-100%, -100%) translate3d(0, 100%, 0);
+  }
+  100% {
+    transform: translate(-100%, -100%) translate3d(0, 0, 0);
+  }
+}
+
+.project-card-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 36px;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9);
+}
+
+.project-card-blob {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ff0055 0%, #a855f7 40%, #00e5ff 100%);
+  opacity: 1;
+  filter: blur(24px);
+  animation: blob-bounce 6s infinite ease;
+  pointer-events: none;
+}
+
+.project-card-surface {
+  position: relative;
+  z-index: 2;
+  margin: 3px;
+  background: rgba(12, 12, 20, 0.94);
+  backdrop-filter: blur(28px);
+  border-radius: 33px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================================================
    Skills Section - Uiverse.io Card Design (Clean Matte Glass - No Laser/Light)
    ========================================================================== */
 

@@ -227,127 +227,133 @@ function StickyProjectCard({
           top: `${index * 24}px`,
           willChange: 'transform',
         }}
-        className="relative w-full max-w-6xl rounded-[32px] sm:rounded-[44px] md:rounded-[52px] border border-white/15 bg-[#0C0C14]/95 backdrop-blur-2xl p-5 sm:p-7 md:p-9 origin-top shadow-[0_-18px_48px_rgba(0,0,0,0.85)] flex flex-col justify-between overflow-hidden"
+        className="project-card-container relative w-full max-w-6xl origin-top rounded-[36px] sm:rounded-[48px] md:rounded-[56px]"
       >
-        {/* Ambient background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#7C3AED]/10 via-transparent to-[#2563EB]/10 pointer-events-none" />
+        {/* Circulating LED Blob Animation (From Uiverse by dylanharriscameron) */}
+        <div className="project-card-blob" aria-hidden="true" />
 
-        {/* Top Header Row: Number, Category + Title, and Direct CTAs */}
-        <div className="relative z-10 flex flex-wrap items-center justify-between gap-4 pb-4 sm:pb-6 border-b border-white/10">
-          <div className="flex items-center gap-4 sm:gap-6 md:gap-8 min-w-0">
-            <span className="font-black leading-none text-white/90 tabular-nums shrink-0 text-4xl sm:text-6xl md:text-7xl font-mono">
-              {formattedNumber}
-            </span>
-            <div className="flex flex-col min-w-0">
-              <span className="text-[#00e5ff] font-mono uppercase tracking-[0.2em] text-xs sm:text-sm font-semibold">
-                {categoryLabel}
+        {/* Card Surface sitting above the circulating LED blob */}
+        <div className="project-card-surface relative z-10 p-5 sm:p-7 md:p-9 flex flex-col justify-between overflow-hidden min-h-[520px]">
+          {/* Ambient background gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#7C3AED]/10 via-transparent to-[#2563EB]/10 pointer-events-none" />
+
+          {/* Top Header Row: Number, Category + Title, and Direct CTAs */}
+          <div className="relative z-10 flex flex-wrap items-center justify-between gap-4 pb-4 sm:pb-6 border-b border-white/10">
+            <div className="flex items-center gap-4 sm:gap-6 md:gap-8 min-w-0">
+              <span className="font-black leading-none text-white/90 tabular-nums shrink-0 text-4xl sm:text-6xl md:text-7xl font-mono">
+                {formattedNumber}
               </span>
-              <h3 className="text-white font-bold tracking-tight text-xl sm:text-2xl md:text-3xl truncate">
-                {project.title}
-              </h3>
+              <div className="flex flex-col min-w-0">
+                <span className="text-[#00e5ff] font-mono uppercase tracking-[0.2em] text-xs sm:text-sm font-semibold">
+                  {categoryLabel}
+                </span>
+                <h3 className="text-white font-bold tracking-tight text-xl sm:text-2xl md:text-3xl truncate">
+                  {project.title}
+                </h3>
+              </div>
             </div>
-          </div>
 
-          <div className="flex items-center gap-3">
-            {hasProjectLink(project.demo) && (
-              <a
-                href={project.demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Open live demo for ${project.title}`}
-                className="btn-primary !py-2.5 !px-5 text-xs sm:text-sm flex items-center gap-2 rounded-full font-medium"
-              >
-                <ExternalLink className="w-4 h-4" />
-                Live Demo
-              </a>
-            )}
-            {hasProjectLink(project.github) && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Open GitHub repository for ${project.title}`}
-                className="btn-ghost !py-2.5 !px-5 text-xs sm:text-sm flex items-center gap-2 rounded-full font-medium"
-              >
-                <FiGithub className="w-4 h-4" />
-                GitHub
-              </a>
-            )}
-          </div>
-        </div>
-
-        {/* Two-Column Content: Left Details & Right Cinematic Media Preview */}
-        <div className="relative z-10 mt-5 sm:mt-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch flex-1">
-          {/* Left Column (5 cols): Summary, Highlights, Chips */}
-          <div className="lg:col-span-5 flex flex-col justify-between">
-            <div>
-              <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-4 line-clamp-3">
-                {project.description}
-              </p>
-
-              {project.highlights?.length > 0 && (
-                <ul className="space-y-2 mb-4 text-xs sm:text-sm text-gray-400">
-                  {project.highlights.slice(0, 2).map((highlight, hIdx) => (
-                    <li key={hIdx} className="flex items-start gap-2">
-                      <span className="text-[#00e5ff] shrink-0 font-bold">▹</span>
-                      <span className="line-clamp-2">{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
+            <div className="flex items-center gap-3">
+              {hasProjectLink(project.demo) && (
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Open live demo for ${project.title}`}
+                  className="btn-primary !py-2.5 !px-5 text-xs sm:text-sm flex items-center gap-2 rounded-full font-medium"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  Live Demo
+                </a>
+              )}
+              {hasProjectLink(project.github) && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Open GitHub repository for ${project.title}`}
+                  className="btn-ghost !py-2.5 !px-5 text-xs sm:text-sm flex items-center gap-2 rounded-full font-medium"
+                >
+                  <FiGithub className="w-4 h-4" />
+                  GitHub
+                </a>
               )}
             </div>
+          </div>
 
-            <div className="mt-auto pt-3">
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tags.slice(0, 6).map((tag, tIdx) => (
-                  <span
-                    key={tIdx}
-                    className="label-mono px-2.5 py-1 bg-white/5 border border-white/10 rounded-md text-xs text-gray-300"
-                  >
-                    {tag}
-                  </span>
-                ))}
+          {/* Two-Column Content: Left Details & Right Cinematic Media Preview */}
+          <div className="relative z-10 mt-5 sm:mt-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch flex-1">
+            {/* Left Column (5 cols): Summary, Highlights, Chips */}
+            <div className="lg:col-span-5 flex flex-col justify-between">
+              <div>
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-4 line-clamp-3">
+                  {project.description}
+                </p>
+
+                {project.highlights?.length > 0 && (
+                  <ul className="space-y-2 mb-4 text-xs sm:text-sm text-gray-400">
+                    {project.highlights.slice(0, 2).map((highlight, hIdx) => (
+                      <li key={hIdx} className="flex items-start gap-2">
+                        <span className="text-[#00e5ff] shrink-0 font-bold">▹</span>
+                        <span className="line-clamp-2">{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
 
+              <div className="mt-auto pt-3">
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tags.slice(0, 6).map((tag, tIdx) => (
+                    <span
+                      key={tIdx}
+                      className="label-mono px-2.5 py-1 bg-white/5 border border-white/10 rounded-md text-xs text-gray-300"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => onSelectProject(project)}
+                  className="text-xs uppercase tracking-widest text-[#00e5ff] hover:text-white transition-colors flex items-center gap-1.5 font-mono cursor-pointer"
+                >
+                  <span>View Full Details</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Right Column (7 cols): Cinematic Screenshot / Media Frame */}
+            <div className="lg:col-span-7 flex">
               <button
                 type="button"
                 onClick={() => onSelectProject(project)}
-                className="text-xs uppercase tracking-widest text-[#00e5ff] hover:text-white transition-colors flex items-center gap-1.5 font-mono cursor-pointer"
+                className="group relative w-full h-[220px] sm:h-[300px] lg:h-full min-h-[220px] rounded-[24px] sm:rounded-[32px] overflow-hidden border border-white/10 bg-[#14141E] cursor-pointer text-left focus-visible:outline-2 focus-visible:outline-white transition-transform"
               >
-                <span>View Full Details</span>
-                <span>→</span>
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt={project.imageAlt || project.title}
+                    loading="lazy"
+                    className={`w-full h-full ${project.imageFit === 'contain' ? 'object-contain p-6 bg-[#1a1a24]' : 'object-cover'} transition-transform duration-700 ease-out group-hover:scale-105`}
+                    style={{ objectPosition: project.imagePosition || 'center' }}
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#12121c] to-[#1e1b4b] p-8 text-center">
+                    <span className="text-2xl sm:text-3xl font-bold tracking-widest text-white/40">
+                      {project.title.split(':')[0]}
+                    </span>
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C14]/80 via-transparent to-transparent opacity-60 group-hover:opacity-20 transition-opacity duration-300" />
+                <div className="absolute bottom-4 right-4 px-3 py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1.5">
+                  <span>Expand Preview</span>
+                  <span>↗</span>
+                </div>
               </button>
             </div>
-          </div>
-
-          {/* Right Column (7 cols): Cinematic Screenshot / Media Frame */}
-          <div className="lg:col-span-7 flex">
-            <button
-              type="button"
-              onClick={() => onSelectProject(project)}
-              className="group relative w-full h-[220px] sm:h-[300px] lg:h-full min-h-[220px] rounded-[24px] sm:rounded-[32px] overflow-hidden border border-white/10 bg-[#14141E] cursor-pointer text-left focus-visible:outline-2 focus-visible:outline-white transition-transform"
-            >
-              {project.image ? (
-                <img
-                  src={project.image}
-                  alt={project.imageAlt || project.title}
-                  loading="lazy"
-                  className={`w-full h-full ${project.imageFit === 'contain' ? 'object-contain p-6 bg-[#1a1a24]' : 'object-cover'} transition-transform duration-700 ease-out group-hover:scale-105`}
-                  style={{ objectPosition: project.imagePosition || 'center' }}
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#12121c] to-[#1e1b4b] p-8 text-center">
-                  <span className="text-2xl sm:text-3xl font-bold tracking-widest text-white/40">
-                    {project.title.split(':')[0]}
-                  </span>
-                </div>
-              )}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C14]/80 via-transparent to-transparent opacity-60 group-hover:opacity-20 transition-opacity duration-300" />
-              <div className="absolute bottom-4 right-4 px-3 py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1.5">
-                <span>Expand Preview</span>
-                <span>↗</span>
-              </div>
-            </button>
           </div>
         </div>
       </motion.article>
