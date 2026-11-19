@@ -22,7 +22,7 @@ export const portfolioData = {
   about: {
     summary: "Computer Science & Engineering graduate (AI & Information Systems). I build full-stack web applications with React, PHP, and MySQL, including REST APIs, secure authentication, and role-based access control. I also deploy low-latency deep learning models on edge hardware using Python and OpenCV. Comfortable with Git, Linux, and Node.js, and eager to write clean, testable, secure backend code.",
     location: "Gazipur, Dhaka, Bangladesh",
-    resumeLink: "#" // TODO: Add resume link
+    resumeLink: "https://drive.google.com/drive/folders/17uxft1zhf8BcaeIwHOGoMFIInVTqNrrI?usp=sharing"
   },
   skills: [
     {
