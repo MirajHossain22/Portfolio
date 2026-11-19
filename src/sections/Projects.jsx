@@ -13,11 +13,12 @@ const projectCategoryMap = {
   5: ['Web', 'AI/ML'],
   6: ['Web', 'AI/ML'],
   7: ['Web', 'AI/ML'],
-  8: ['Web']
+  8: ['Web'],
+  9: ['Web', 'AI/ML']
 };
 
 const hasProjectLink = (url) => Boolean(url && url !== '#');
-const projectOrder = [6, 7, 8, 1, 2, 3, 4];
+const projectOrder = [9, 6, 7, 8, 1, 2, 3, 4];
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('All');

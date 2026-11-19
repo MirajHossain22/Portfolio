@@ -5,6 +5,7 @@ import pharmacyImage from '../assets/pharmacy.jpg.jpg';
 import fcommerceOrderDeskImage from '../assets/fcommerce-order-desk.png';
 import ragChatImage from '../assets/rag-chat.png';
 import tomatoMaturityImage from '../assets/tomato-maturity.jpg';
+import samsungPhoneSystemImage from '../assets/samsung-phone-system.jpg';
 
 export const portfolioData = {
   hero: {
@@ -30,7 +31,7 @@ export const portfolioData = {
     },
     {
       category: "Backend & APIs",
-      items: ["Node.js", "RESTful API design", "microservice architecture", "Redis", "authentication", "role-based access control", "data validation"]
+      items: ["FastAPI", "Node.js", "RESTful API design", "microservice architecture", "Redis", "authentication", "role-based access control", "data validation"]
     },
     {
       category: "Frontend",
@@ -38,7 +39,7 @@ export const portfolioData = {
     },
     {
       category: "Databases",
-      items: ["MySQL", "RDBMS", "PL/SQL", "schema design"]
+      items: ["PostgreSQL", "MySQL", "RDBMS", "PL/SQL", "schema design"]
     },
     {
       category: "Tools & Practices",
@@ -72,6 +73,22 @@ export const portfolioData = {
     ]
   },
   projects: [
+    {
+      id: 9,
+      title: "Samsung Phone Query & Review System",
+      tags: ["Python", "FastAPI", "PostgreSQL", "RAG", "LLMs", "BeautifulSoup", "scikit-learn", "pytest", "Docker"],
+      description: "An end-to-end Python & FastAPI service that scrapes Samsung phone specs into PostgreSQL, answers questions with a grounded RAG chatbot, and writes reviews via a two-agent pipeline.",
+      highlights: [
+        "BeautifulSoup scraper with retries and back-off collecting specs and prices across normalized PostgreSQL tables.",
+        "Grounded RAG chatbot with deterministic code-calculated rankings/comparisons and database fallback to prevent hallucinations.",
+        "Two-agent review pipeline returning step traces, 14-core pytest suite, and FastAPI service deployed live on Render."
+      ],
+      image: samsungPhoneSystemImage,
+      imageAlt: "Samsung Phone Query and Review System dashboard interface",
+      imagePosition: "top",
+      github: "https://github.com/MirajHossain22/Samsung-Phone-Query-and-Review-System.git",
+      demo: "https://samsung-phone-query-and-review-system.onrender.com"
+    },
     {
       id: 6,
       title: "AI-Powered PDF Document Chat (RAG)",
