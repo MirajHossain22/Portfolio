@@ -63,74 +63,76 @@ export default function Hero() {
         {/* 2-Column Grid */}
         <div className="w-full flex flex-col-reverse lg:grid lg:grid-cols-12 gap-12 lg:gap-8 items-center justify-between">
 
-          {/* Left Column: Glass Card */}
+          {/* Left Column: Skewed Sticker Card (From Uiverse.io by Javierrocadev) */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="w-full lg:col-span-7 xl:col-span-7 glass p-5 sm:p-8 md:p-12 text-center relative shadow-2xl rounded-3xl flex flex-col items-center justify-center"
+            className="w-full lg:col-span-7 xl:col-span-7 relative rounded-[28px] sm:rounded-3xl p-2 sm:p-2.5 bg-neutral-50 -skew-x-6 -translate-y-3 sm:-translate-y-4 hover:-translate-y-1 hover:translate-x-0 hover:skew-x-0 transition-all duration-500 ease-out shadow-[14px_14px_0px_#000000] hover:shadow-[4px_4px_0px_#000000]"
           >
-            {/* Eyebrow */}
-            <motion.div variants={itemVariants} className="mb-6">
-              <span className="label-mono px-4 py-2 bg-white/5 border border-white/10 rounded-full text-gray-300 shadow-sm backdrop-blur-md">
-                // B.SC. CSE · AIUB · 2026
-              </span>
-            </motion.div>
+            <div className="w-full h-full bg-[#0A0A10] text-neutral-50 rounded-[20px] sm:rounded-[22px] p-5 sm:p-8 md:p-12 flex flex-col items-center justify-center text-center border border-white/5">
+              {/* Eyebrow */}
+              <motion.div variants={itemVariants} className="mb-6">
+                <span className="label-mono px-4 py-2 bg-white/5 border border-white/10 rounded-full text-gray-300 shadow-sm backdrop-blur-md">
+                  // B.SC. CSE · AIUB · 2026
+                </span>
+              </motion.div>
 
-            {/* Name */}
-            <motion.h1
-              variants={itemVariants}
-              className="font-extrabold tracking-tight mb-4 text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-400"
-              style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', lineHeight: '1.1' }}
-            >
-              Miraj Hossain
-            </motion.h1>
+              {/* Name */}
+              <motion.h1
+                variants={itemVariants}
+                className="font-extrabold tracking-tight mb-4 text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-400"
+                style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', lineHeight: '1.1' }}
+              >
+                Miraj Hossain
+              </motion.h1>
 
-            {/* Title */}
-            <motion.h2
-              variants={itemVariants}
-              className="text-lg md:text-2xl font-semibold text-gray-200 mb-6"
-            >
-              Software Engineer | Full-Stack & AI Developer
-            </motion.h2>
+              {/* Title */}
+              <motion.h2
+                variants={itemVariants}
+                className="text-lg md:text-2xl font-semibold text-gray-200 mb-6"
+              >
+                Software Engineer | Full-Stack & AI Developer
+              </motion.h2>
 
-            {/* Intro */}
-            <motion.p
-              variants={itemVariants}
-              className="text-sm md:text-base text-gray-400 max-w-xl mb-10 leading-relaxed mx-auto"
-            >
-              Computer Science & Engineering graduate focused on clean, secure backend code and deep learning at the edge.
-            </motion.p>
+              {/* Intro */}
+              <motion.p
+                variants={itemVariants}
+                className="text-sm md:text-base text-gray-400 max-w-xl mb-10 leading-relaxed mx-auto"
+              >
+                Computer Science & Engineering graduate focused on clean, secure backend code and deep learning at the edge.
+              </motion.p>
 
-            {/* Buttons */}
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row justify-center items-center gap-5 mb-8 w-full">
-              <a href="#projects" className="btn-primary w-full sm:w-auto">
-                View Projects
-              </a>
-              <a href={portfolioData.about.resumeLink} target="_blank" rel="noopener noreferrer" className="btn-ghost w-full sm:w-auto">
-                Download CV
-              </a>
-            </motion.div>
+              {/* Buttons */}
+              <motion.div variants={itemVariants} className="flex flex-col sm:flex-row justify-center items-center gap-5 mb-8 w-full">
+                <a href="#projects" className="btn-primary w-full sm:w-auto">
+                  View Projects
+                </a>
+                <a href={portfolioData.about.resumeLink} target="_blank" rel="noopener noreferrer" className="btn-ghost w-full sm:w-auto">
+                  Download CV
+                </a>
+              </motion.div>
 
-            {/* Social Glass Chips */}
-            <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-3">
-              <a href={portfolioData.contact.socialNetworks[0].url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-2 bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 rounded-xl transition-all hover:-translate-y-1 hover:border-white/20 text-gray-300 hover:text-white group text-xs">
-                <FiGithub className="w-3.5 h-3.5 group-hover:text-[#2563EB] transition-colors" />
-                <span>GitHub</span>
-              </a>
-              <a href={portfolioData.contact.socialNetworks[1].url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-2 bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 rounded-xl transition-all hover:-translate-y-1 hover:border-white/20 text-gray-300 hover:text-white group text-xs">
-                <FiLinkedin className="w-3.5 h-3.5 group-hover:text-[#2563EB] transition-colors" />
-                <span>LinkedIn</span>
-              </a>
-              <a href={`mailto:${portfolioData.contact.email}`} className="flex items-center gap-2 px-3 py-2 bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 rounded-xl transition-all hover:-translate-y-1 hover:border-white/20 text-gray-300 hover:text-white group text-xs">
-                <Mail className="w-3.5 h-3.5 group-hover:text-[#2563EB] transition-colors" />
-                <span>Email</span>
-              </a>
-              <a href={`tel:${portfolioData.contact.phone.replace(/[^0-9+]/g, '')}`} className="flex items-center gap-2 px-3 py-2 bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 rounded-xl transition-all hover:-translate-y-1 hover:border-white/20 text-gray-300 hover:text-white group text-xs">
-                <Phone className="w-3.5 h-3.5 group-hover:text-[#2563EB] transition-colors" />
-                <span>Phone</span>
-              </a>
-            </motion.div>
+              {/* Social Glass Chips */}
+              <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-3">
+                <a href={portfolioData.contact.socialNetworks[0].url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-2 bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 rounded-xl transition-all hover:-translate-y-1 hover:border-white/20 text-gray-300 hover:text-white group text-xs">
+                  <FiGithub className="w-3.5 h-3.5 group-hover:text-[#2563EB] transition-colors" />
+                  <span>GitHub</span>
+                </a>
+                <a href={portfolioData.contact.socialNetworks[1].url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-2 bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 rounded-xl transition-all hover:-translate-y-1 hover:border-white/20 text-gray-300 hover:text-white group text-xs">
+                  <FiLinkedin className="w-3.5 h-3.5 group-hover:text-[#2563EB] transition-colors" />
+                  <span>LinkedIn</span>
+                </a>
+                <a href={`mailto:${portfolioData.contact.email}`} className="flex items-center gap-2 px-3 py-2 bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 rounded-xl transition-all hover:-translate-y-1 hover:border-white/20 text-gray-300 hover:text-white group text-xs">
+                  <Mail className="w-3.5 h-3.5 group-hover:text-[#2563EB] transition-colors" />
+                  <span>Email</span>
+                </a>
+                <a href={`tel:${portfolioData.contact.phone.replace(/[^0-9+]/g, '')}`} className="flex items-center gap-2 px-3 py-2 bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 rounded-xl transition-all hover:-translate-y-1 hover:border-white/20 text-gray-300 hover:text-white group text-xs">
+                  <Phone className="w-3.5 h-3.5 group-hover:text-[#2563EB] transition-colors" />
+                  <span>Phone</span>
+                </a>
+              </motion.div>
+            </div>
           </motion.div>
 
           {/* Right Column: Portrait Card */}
