@@ -92,7 +92,7 @@ export default function Hero() {
                 variants={itemVariants}
                 className="text-lg md:text-2xl font-semibold text-gray-200 mb-6"
               >
-                Software Engineer | Full-Stack & AI Developer
+                AI Engineer | Software Engineer & Full-Stack Web Developer
               </motion.h2>
 
               {/* Intro */}
@@ -156,15 +156,15 @@ export default function Hero() {
       </div>
 
       {/* Tech Marquee */}
-      <div className="absolute bottom-0 left-0 w-full border-t border-white/5 bg-black/30 backdrop-blur-md py-3 overflow-hidden z-20">
-        <div className="flex w-[200%] animate-marquee hover:[animation-play-state:paused]">
+      <div className="absolute bottom-2 left-0 w-full py-2 overflow-hidden z-20 pointer-events-none bg-transparent">
+        <div className="flex w-[200%] animate-marquee hover:[animation-play-state:paused] items-center pointer-events-auto">
           {[...uniqueTechStack, ...uniqueTechStack, ...uniqueTechStack].map((tech, idx) => {
             const Icon = techIcons[tech] || Cpu;
             return (
-              <div key={idx} className="flex items-center justify-center min-w-[150px]">
-                <span className="text-xs font-medium text-gray-400 tracking-wider flex items-center gap-2 group transition-colors hover:text-white">
-                  <Icon className="w-4 h-4 text-[#7C3AED] group-hover:text-[#FF9FFC] transition-colors" />
-                  {tech}
+              <div key={idx} className="flex items-center justify-center px-2.5">
+                <span className="marquee-skill-glass group inline-flex items-center gap-2.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold select-none whitespace-nowrap cursor-pointer">
+                  <Icon className="w-4 h-4 text-[#7C3AED] group-hover:text-[#FF9FFC] group-hover:drop-shadow-[0_0_8px_#FF9FFC] transition-all duration-300 shrink-0" />
+                  <span className="group-hover:text-white transition-colors">{tech}</span>
                 </span>
               </div>
             );

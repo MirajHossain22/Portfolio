@@ -10,7 +10,7 @@ import samsungPhoneSystemImage from '../assets/samsung-phone-system.jpg';
 export const portfolioData = {
   hero: {
     name: "Miraj Hossain",
-    title: "Software Engineer | Full-Stack & AI Developer",
+    title: "AI Engineer | Software Engineer & Full-Stack Web Developer",
     intro: "Computer Science & Engineering graduate focused on clean, secure backend code and deep learning at the edge.",
     portrait: {
       image: mirajPhoto,

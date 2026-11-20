@@ -196,7 +196,7 @@ function SkillCard({ categoryGroup, index }) {
           ))}
         </div>
 
-        <p className="description">
+        <p className="description text-teal-300 font-medium">
           {meta.description}
         </p>
 
