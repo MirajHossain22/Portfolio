@@ -68,7 +68,7 @@ export default function Hero() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="w-full lg:col-span-7 xl:col-span-7 relative rounded-[28px] sm:rounded-3xl p-2 sm:p-2.5 bg-neutral-50 -skew-x-6 -translate-y-3 sm:-translate-y-4 hover:-translate-y-1 hover:translate-x-0 hover:skew-x-0 transition-all duration-500 ease-out shadow-[14px_14px_0px_#000000] hover:shadow-[4px_4px_0px_#000000]"
+            className="hero-left-card w-full lg:col-span-7 xl:col-span-7 relative rounded-[28px] sm:rounded-3xl p-2 sm:p-2.5 bg-neutral-50 -skew-x-6 -translate-y-3 sm:-translate-y-4 hover:-translate-y-1 hover:translate-x-0 hover:skew-x-0 transition-all duration-500 ease-out shadow-[14px_14px_0px_#000000] hover:shadow-[4px_4px_0px_#000000]"
           >
             <div className="w-full h-full bg-[#0A0A10] text-neutral-50 rounded-[20px] sm:rounded-[22px] p-5 sm:p-8 md:p-12 flex flex-col items-center justify-center text-center border border-white/5">
               {/* Eyebrow */}

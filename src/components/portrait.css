@@ -1,0 +1,37 @@
+/* From Uiverse.io by javierBarroso - https://uiverse.io/javierBarroso/yellow-panda-85
+   MIT License, Copyright (c) adamgiebl (Adam Giebl), javierBarroso (Javier Barroso) */
+/* From Uiverse.io by dexter-st - https://uiverse.io/dexter-st/sharp-puma-61
+   MIT License, Copyright (c) dexter-st */
+@media (min-width: 1024px) { .hero-left-card { left: -48px; } }
+.portrait-scene { position: relative; isolation: isolate; width: min(100%, 540px); height: 570px; margin-inline: auto; overflow: visible; background: radial-gradient(ellipse at 50% 57%,rgba(96,216,201,.13),transparent 67%); }
+.portrait-slide-card { position: absolute; z-index: 0; inset: 6% 8% 2%; overflow: hidden; border-radius: 20px; background: rgb(223,225,235); box-shadow: inset 0 56px 40px #2224,inset 0 -56px 40px #fff,1px 1px 2px #fff,-1px -1px 2px #4442; }
+.portrait-slide-content { position: relative; display: flex; justify-content: space-between; align-items: center; width: 300%; height: 100%; transform: translateX(0); animation: portrait-slide 6s infinite cubic-bezier(.68,-.55,.265,1.55); }
+.portrait-slide-word { width: 50%; text-align: center; color: #333; font-size: 45px; font-weight: 600; text-shadow: 9px 8px 3px #4443; }
+@keyframes portrait-slide { 0%,20% { transform: translateX(0); } 30%,70% { transform: translateX(-33.33%); } 80%,100% { transform: translateX(-66.66%); } }
+.portrait-glass-cube { --cube-size: 185px; --cube-duration: 20s; position: absolute; z-index: 1; top: 32%; left: 50%; width: var(--cube-size); height: var(--cube-size); transform: translateX(-50%); perspective: 750px; pointer-events: none; opacity: .8; }
+.portrait-cube-outer,.portrait-cube-inner { position: absolute; inset: 0; transform-style: preserve-3d; }
+.portrait-cube-inner { scale: .52; animation: portrait-cube-rotate var(--cube-duration) linear infinite; }
+.portrait-cube-outer { animation: portrait-cube-rotate var(--cube-duration) linear infinite reverse; }
+.portrait-cube-face { position: absolute; inset: 0; display: block; backface-visibility: visible; box-shadow: inset 0 0 2px #fff9,inset 0 0 25px #fff3,inset 0 0 32px 16px #0000000d; }
+.portrait-cube-outer .portrait-cube-face { border: 1px solid rgba(255,255,255,.65); background: linear-gradient(180deg,#fff7,#fff0),radial-gradient(circle at 50% -50%,rgba(175,255,80,.8),transparent 45%,rgba(31,198,178,.2)); backdrop-filter: blur(2px); }
+.portrait-cube-inner .portrait-cube-face { background: rgba(169,255,63,.74); box-shadow: inset 0 0 12px #0005,inset 0 0 40px #fff8; }
+.portrait-cube-front { transform: translateZ(calc(var(--cube-size) / 2)); }.portrait-cube-back { transform: rotateY(180deg) translateZ(calc(var(--cube-size) / 2)); }.portrait-cube-right { transform: rotateY(90deg) translateZ(calc(var(--cube-size) / 2)); }.portrait-cube-left { transform: rotateY(-90deg) translateZ(calc(var(--cube-size) / 2)); }.portrait-cube-top { transform: rotateX(90deg) translateZ(calc(var(--cube-size) / 2)); }.portrait-cube-bottom { transform: rotateX(-90deg) translateZ(calc(var(--cube-size) / 2)); filter: blur(12px); }
+.portrait-cube-blur { position: absolute; inset: 0; filter: blur(2px); }
+.portrait-cube-shadow { position: absolute; inset: 24%; border-radius: 50%; background: rgba(33,49,71,.22); filter: blur(25px); transform: translateY(150px) rotate(45deg); }
+.portrait-cube-light { position: absolute; inset: 22%; background: rgba(118,255,201,.45); filter: blur(30px); mix-blend-mode: color-dodge; }
+@keyframes portrait-cube-rotate { from { transform: rotateX(-10deg) rotateY(45deg); } to { transform: rotateX(-10deg) rotateY(405deg); } }
+.portrait-person { position: absolute; z-index: 4; left: 50%; bottom: 0; width: 124%; max-width: none; height: 136%; object-fit: contain; object-position: bottom; transform: translateX(-50%); filter: drop-shadow(0 17px 20px rgba(26,36,66,.18)); mask-image: linear-gradient(#000 82%,transparent 100%); pointer-events: none; }
+.portrait-object { position: absolute; top: 50%; left: 50%; width: 92px; height: 92px; background-size: 300% 300%; background-repeat: no-repeat; filter: drop-shadow(5px 9px 8px rgba(29,45,87,.25)); cursor: pointer; will-change: transform; transition: filter .25s ease; }
+.portrait-object { perspective: 500px; }
+.portrait-object-face { display: block; width: 100%; height: 100%; background-size: 300% 300%; background-position: inherit; background-repeat: no-repeat; transform-style: preserve-3d; animation: object-turn 18s ease-in-out infinite alternate; }
+.portrait-object:nth-of-type(2n) .portrait-object-face { animation-delay: -9s; }
+@keyframes object-turn { from { transform: rotateY(-12deg) rotateX(6deg) rotateZ(-2deg); } to { transform: rotateY(12deg) rotateX(-6deg) rotateZ(2deg); } }
+.portrait-object:hover { filter: drop-shadow(0 15px 18px rgba(50,94,205,.44)) brightness(1.1); }
+.object-globe { width: 116px; height: 116px; background-position: 0 0; }.object-gear { background-position: 50% 0; }.object-chat { background-position: 100% 0; }.object-shield { width: 98px; height: 98px; background-position: 0 50%; }.object-code { background-position: 50% 50%; }.object-robot { background-position: 100% 50%; }.object-server { width: 78px; height: 78px; background-position: 0 100%; }.object-database-cpu { width: 100px; height: 100px; background-position: 50% 100%; }.object-cloud { width: 104px; height: 104px; background-position: 100% 100%; }
+.portrait-badge,.portrait-nameplate { position: absolute; z-index: 6; display: flex; align-items: center; gap: 9px; padding: 10px 14px; border: 1px solid rgba(255,255,255,.96); border-radius: 17px; background: linear-gradient(135deg,rgba(255,255,255,.84),rgba(225,235,255,.62)); color: #334155; box-shadow: 0 12px 30px rgba(81,95,153,.14),inset 0 1px 2px #fff; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+.portrait-badge { font-size: 12px; transition: background-color .25s,box-shadow .25s; }.portrait-badge:hover { background: rgba(255,255,255,.97); box-shadow: 0 18px 35px rgba(67,92,183,.25); }
+.portrait-badge strong,.portrait-nameplate strong { display: block; font-size: 13px; font-weight: 700; }.portrait-badge small,.portrait-nameplate small { display: block; color: #687384; font-size: 10px; line-height: 1.4; }
+.badge-code { top: 31%; left: -9%; color: #5e64dc; font: 600 11px 'JetBrains Mono',monospace; }.badge-code span { color: #334155; }.badge-request { bottom: 20%; left: -5%; }.badge-check { color: #10b981; font-weight: 800; }.badge-host { top: 44%; right: -8%; }.badge-model { bottom: 16%; right: -11%; }
+.portrait-nameplate { z-index: 7; left: 50%; bottom: 0; min-width: 295px; border-radius: 999px; transform: translateX(-50%); }
+@media (max-width: 640px) { .portrait-scene { width: min(100%,390px); height: 440px; }.portrait-glass-cube { --cube-size: 145px; }.portrait-slide-word { font-size: 30px; }.portrait-object { width: 65px; height: 65px; }.object-globe { width: 80px; height: 80px; }.object-server { width: 58px; height: 58px; }.object-shield,.object-database-cpu,.object-cloud { width: 70px; height: 70px; }.portrait-badge { padding: 7px 9px; font-size: 10px; }.badge-code,.badge-request { left: 0; }.badge-host,.badge-model { right: 0; }.portrait-person { width: 125%; height: 136%; }.portrait-nameplate { min-width: 260px; padding: 9px 12px; } }
+@media (prefers-reduced-motion: reduce) { .portrait-object,.portrait-badge { transition: none; }.portrait-object-face,.portrait-cube-inner,.portrait-cube-outer,.portrait-slide-content { animation: none; }.portrait-badge { translate: none !important; } }

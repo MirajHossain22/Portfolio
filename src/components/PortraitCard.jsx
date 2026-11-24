@@ -1,114 +1,116 @@
-import React, { useState, useRef } from 'react';
-import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from 'framer-motion';
-import { portfolioData } from '../data/portfolio';
+import { useEffect, useRef } from 'react';
+import portrait from '../assets/cv-photo-cutout.png';
+import objectsSheet from '../assets/portrait-objects.png';
+import './portrait.css';
+
+const objects = [
+  ['globe', 'Wireframe globe with orbit'],
+  ['gear', 'Mechanical gear'],
+  ['chat', 'Speech bubble'],
+  ['shield', 'Security shield'],
+  ['code', 'Code brackets'],
+  ['robot', 'AI robot'],
+  ['server', 'Server rack'],
+  ['database-cpu', 'Database and microchip'],
+  ['cloud', 'Cloud upload'],
+];
 
 export default function PortraitCard() {
-  const [imageError, setImageError] = useState(false);
-  const ref = useRef(null);
-  const shouldReduceMotion = useReducedMotion();
-  
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
+  const stageRef = useRef(null);
 
-  const mouseXSpring = useSpring(x, { stiffness: 150, damping: 20 });
-  const mouseYSpring = useSpring(y, { stiffness: 150, damping: 20 });
+  useEffect(() => {
+    const stage = stageRef.current;
+    const icons = [...stage.querySelectorAll('.portrait-object')];
+    const badges = [...stage.querySelectorAll('.portrait-badge')];
+    const portraitElement = stage.querySelector('.portrait-person');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let frame;
+    let last = performance.now();
+    let angle = 0;
+    let scroll = window.scrollY;
+    let targetX = 0;
+    let targetY = 0;
+    let mouseX = 0;
+    let mouseY = 0;
 
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["8deg", "-8deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-8deg", "8deg"]);
+    const onPointerMove = (event) => {
+      const rect = stage.getBoundingClientRect();
+      targetX = Math.max(-1, Math.min(1, (event.clientX - rect.left - rect.width / 2) / (rect.width / 2)));
+      targetY = Math.max(-1, Math.min(1, (event.clientY - rect.top - rect.height / 2) / (rect.height / 2)));
+    };
+    const onPointerLeave = () => { targetX = 0; targetY = 0; };
 
-  const handleMouseMove = (e) => {
-    // Only apply tilt on fine pointers (desktop) and if not reduced motion
-    if (shouldReduceMotion || window.matchMedia('(pointer: coarse)').matches) return;
-    
-    if (!ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    
-    const width = rect.width;
-    const height = rect.height;
-    
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    
-    x.set(mouseX / width - 0.5);
-    y.set(mouseY / height - 0.5);
-  };
+    const tick = (now) => {
+      const dt = Math.min((now - last) / 1000, .05);
+      last = now;
+      if (!reduceMotion.matches) angle -= dt * .055;
+      scroll += (window.scrollY - scroll) * .1;
+      mouseX += (targetX - mouseX) * .1;
+      mouseY += (targetY - mouseY) * .1;
+      const total = reduceMotion.matches ? 0 : angle - scroll * .0012;
+      const rx = Math.min(stage.clientWidth * .45, 225);
+      const ry = Math.min(stage.clientHeight * .48, 275);
 
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
+      icons.forEach((icon, index) => {
+        const theta = total + index * Math.PI * 2 / icons.length - 2.2;
+        const front = (Math.sin(theta) + 1) / 2;
+        const x = Math.cos(theta) * rx - mouseX * 12;
+        const y = Math.sin(theta) * ry - mouseY * 10;
+        const scale = (icon.matches(':hover') ? 1.2 : 1) * (.88 + front * .18);
+        icon.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) scale(${scale})`;
+        icon.style.zIndex = '5';
+      });
+
+      if (!reduceMotion.matches) {
+        portraitElement.style.transform = `translateX(-50%) translate3d(${mouseX * 7}px, ${mouseY * 5 - Math.min(scroll * .025, 35)}px, 0)`;
+        badges.forEach((badge, index) => {
+          const bob = Math.sin(now * .002 + index * 1.4) * 4;
+          badge.style.translate = `${mouseX * (16 + index * 3)}px ${mouseY * (12 + index * 2) + bob - (badge.matches(':hover') ? 8 : 0)}px`;
+        });
+      }
+      frame = requestAnimationFrame(tick);
+    };
+
+    stage.addEventListener('pointermove', onPointerMove, { passive: true });
+    stage.addEventListener('pointerleave', onPointerLeave);
+    frame = requestAnimationFrame(tick);
+    return () => {
+      cancelAnimationFrame(frame);
+      stage.removeEventListener('pointermove', onPointerMove);
+      stage.removeEventListener('pointerleave', onPointerLeave);
+    };
+  }, []);
 
   return (
-    <div className="relative w-full max-w-[280px] md:max-w-[320px] aspect-[4/5] mx-auto perspective-1000">
-      {/* Background glow */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#7C3AED]/30 to-[#2563EB]/30 rounded-3xl blur-3xl transform scale-90" />
-
-      {/* Main Glass Frame */}
-      <motion.div
-        ref={ref}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        initial={{ opacity: 0, scale: 0.96, filter: 'blur(12px)' }}
-        animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-        transition={{ duration: 0.9, ease: "easeOut" }}
-        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-        className="glass w-full h-full rounded-3xl relative z-10 group overflow-visible"
-      >
-        {/* Animated Gradient Ring */}
-        <div 
-          className={`absolute inset-0 rounded-3xl opacity-70 pointer-events-none -inset-[2px] -z-10 ${shouldReduceMotion ? '' : 'animate-spin-slow'}`}
-          style={{
-            background: 'conic-gradient(from 0deg, #7C3AED, #2563EB, #0D9488, #7C3AED)',
-            WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-            WebkitMaskComposite: 'xor',
-            maskComposite: 'exclude',
-            padding: '2px'
-          }}
-        />
-
-        {/* Photo Container */}
-        <div className="absolute inset-[4px] rounded-[1.4rem] overflow-hidden bg-[#0A0A0F] border border-white/5">
-          {imageError ? (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900">
-              <span className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-[#7C3AED] to-[#FF9FFC]">
-                {portfolioData.hero.portrait.fallbackInitials}
-              </span>
-            </div>
-          ) : (
-            <img 
-              src={portfolioData.hero.portrait.image}
-              alt={portfolioData.hero.name || "Miraj Hossain"}
-              onError={() => setImageError(true)}
-              className="w-full h-full object-cover"
-            />
-          )}
-
-          {/* Shine overlay */}
-          <div className={`absolute inset-0 bg-gradient-to-tr from-transparent via-white/40 to-transparent -translate-x-[150%] skew-x-[-45deg] pointer-events-none ${shouldReduceMotion ? '' : 'group-hover:animate-shine'}`} />
+    <div ref={stageRef} className="portrait-scene" aria-label="Portrait of Miraj Hossain with orbiting AI and software objects">
+      <div className="portrait-slide-card" aria-hidden="true">
+        <div className="portrait-slide-content">
+          <span className="portrait-slide-word">AI</span>
+          <span className="portrait-slide-word">Engineer</span>
+          <span className="portrait-slide-word">AI</span>
         </div>
-      </motion.div>
-
-      {/* Floating Chips */}
-      <motion.div 
-        animate={{ y: shouldReduceMotion ? 0 : [0, -8, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -top-4 right-0 sm:-right-6 z-20"
-      >
-        <div className="glass px-3 py-1.5 rounded-full flex items-center gap-2 border border-white/10 shadow-lg backdrop-blur-md">
-          <div className={`w-2 h-2 rounded-full bg-emerald-400 ${shouldReduceMotion ? '' : 'animate-pulse'}`} />
-          <span className="label-mono text-[10px] text-gray-200 m-0 leading-none">{portfolioData.hero.portrait.chip1}</span>
+      </div>
+      <div className="portrait-glass-cube" aria-hidden="true">
+        <div className="portrait-cube-shadow" />
+        <div className="portrait-cube-blur"><div className="portrait-cube-inner">
+          {['front', 'back', 'right', 'left', 'top', 'bottom'].map((side) => <i key={side} className={`portrait-cube-face portrait-cube-${side}`} />)}
+        </div></div>
+        <div className="portrait-cube-outer">
+          {['front', 'back', 'right', 'left', 'top', 'bottom'].map((side) => <i key={side} className={`portrait-cube-face portrait-cube-${side}`} />)}
         </div>
-      </motion.div>
-
-      <motion.div 
-        animate={{ y: shouldReduceMotion ? 0 : [0, 8, 0] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute -bottom-4 left-0 sm:-left-6 z-20"
-      >
-        <div className="glass px-3 py-1.5 rounded-full border border-white/10 shadow-lg backdrop-blur-md">
-          <span className="label-mono text-[10px] text-gray-200 m-0 leading-none">{portfolioData.hero.portrait.chip2}</span>
+        <div className="portrait-cube-light" />
+      </div>
+      {objects.map(([name, label]) => (
+        <div key={name} className={`portrait-object object-${name}`} title={label} aria-hidden="true">
+          <span className="portrait-object-face" style={{ backgroundImage: `url(${objectsSheet})` }} />
         </div>
-      </motion.div>
+      ))}
+      <img className="portrait-person" src={portrait} alt="Miraj Hossain wearing a dark blazer and AIUB lanyard" />
+      <div className="portrait-badge badge-code">agent.run(<span>"build-ideas"</span>)</div>
+      <div className="portrait-badge badge-request"><span className="badge-check">✓</span> Building with AI</div>
+      <div className="portrait-badge badge-host"><strong>Full-stack</strong><small>web · AI · systems</small></div>
+      <div className="portrait-badge badge-model"><strong>React · Python · AI</strong><small>from idea to product</small></div>
+      <div className="portrait-nameplate"><span><strong>Miraj Hossain</strong><small>AI Engineer &amp; Full-Stack Developer · Dhaka, BD</small></span></div>
     </div>
   );
 }

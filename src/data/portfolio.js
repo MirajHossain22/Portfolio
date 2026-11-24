@@ -1,4 +1,4 @@
-import mirajPhoto from '../assets/miraj.jpg.jpeg';
+import mirajPhoto from '../assets/cv-photo.png';
 import agribotImage from '../assets/agribot.jpg';
 import ecoriseImage from '../assets/ecorise.png';
 import pharmacyImage from '../assets/pharmacy.jpg.jpg';
